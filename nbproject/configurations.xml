@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="source">
+        <df name="fibcmd">
+          <in>main.cpp</in>
+        </df>
+        <df name="fiblib">
+          <df name="source">
+            <in>Fibonacci.cpp</in>
+          </df>
+        </df>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>build/Makefile</itemPath>
+      <itemPath>configure</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>build/Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-std=gnu++11 -O3 -fno-exceptions -fPIC"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>build</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <ccTool>
+            <preprocessorList>
+              <Elem>LINUX</Elem>
+              <Elem>NDEBUG</Elem>
+              <Elem>PIC</Elem>
+              <Elem>_REENTRANT</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <folder path="0/source/fibcmd">
+        <ccTool>
+          <incDir>
+            <pElem>source/fiblib/include</pElem>
+            <pElem>build/source</pElem>
+            <pElem>build/source/fibcmd</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/source/fiblib">
+        <ccTool>
+          <incDir>
+            <pElem>source/fiblib/source</pElem>
+            <pElem>source/fiblib/include/fiblib</pElem>
+            <pElem>source/fiblib/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>FIBLIB_EXPORTS=1</Elem>
+            <Elem>LINUX=1</Elem>
+            <Elem>NDEBUG=1</Elem>
+            <Elem>PIC=1</Elem>
+            <Elem>_FORTIFY_SOURCE=2</Elem>
+            <Elem>_REENTRANT=1</Elem>
+            <Elem>__GNUC_STDC_INLINE__=1</Elem>
+            <Elem>__GXX_EXPERIMENTAL_CXX0X__=1</Elem>
+            <Elem>__OPTIMIZE__=1</Elem>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__cplusplus=201103L</Elem>
+            <Elem>__pic__=2</Elem>
+            <Elem>fiblib_EXPORTS=1</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <item path="source/fibcmd/main.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="source/fiblib/source/Fibonacci.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

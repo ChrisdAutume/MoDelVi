@@ -1,0 +1,13 @@
+Scanning dependencies of target fiblib
+[ 50%] Building CXX object source/fiblib/CMakeFiles/fiblib.dir/source/Fibonacci.cpp.o
+Linking CXX shared library ../../libfiblib.so
+[ 50%] Built target fiblib
+Scanning dependencies of target fibcmd
+[100%] Building CXX object source/fibcmd/CMakeFiles/fibcmd.dir/main.cpp.o
+/aber/ced13/Desktop/MoDelVi/source/fibcmd/main.cpp:6:30: fatal error: template-version.h: No such file or directory
+ #include <template-version.h>
+                              ^
+compilation terminated.
+make[2]: *** [source/fibcmd/CMakeFiles/fibcmd.dir/main.cpp.o] Error 1
+make[1]: *** [source/fibcmd/CMakeFiles/fibcmd.dir/all] Error 2
+make: *** [all] Error 2

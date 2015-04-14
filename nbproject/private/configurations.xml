@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="build">
+        <df name="CMakeFiles">
+          <df name="2.8.12.2">
+            <df name="CompilerIdC">
+              <in>CMakeCCompilerId.c</in>
+            </df>
+            <df name="CompilerIdCXX">
+              <in>CMakeCXXCompilerId.cpp</in>
+            </df>
+          </df>
+          <df name="CMakeTmp">
+          </df>
+          <df name="Progress">
+          </df>
+        </df>
+        <df name="docs">
+          <df name="CMakeFiles">
+            <df name="docs.dir">
+            </df>
+          </df>
+          <df name="doxygen">
+            <df name="CMakeFiles">
+              <df name="docs-doxygen.dir">
+              </df>
+            </df>
+          </df>
+        </df>
+        <df name="packages">
+          <df name="CMakeFiles">
+            <df name="pack-MoDelVi.dir">
+            </df>
+            <df name="pack.dir">
+            </df>
+          </df>
+        </df>
+        <df name="source">
+          <df name="CMakeFiles">
+          </df>
+          <df name="fibcmd">
+            <df name="CMakeFiles">
+              <df name="fibcmd.dir">
+              </df>
+            </df>
+          </df>
+          <df name="fiblib">
+            <df name="CMakeFiles">
+              <df name="fiblib.dir">
+                <df name="source">
+                </df>
+              </df>
+            </df>
+          </df>
+          <df name="tests">
+            <df name="CMakeFiles">
+            </df>
+          </df>
+          <in>modelvi-version.h</in>
+        </df>
+      </df>
+      <df name="cmake">
+      </df>
+      <df name="data">
+      </df>
+      <df name="docs">
+        <df name="doxygen">
+        </df>
+      </df>
+      <df name="packages">
+      </df>
+      <df name="source">
+        <df name="fibcmd">
+          <in>main.cpp</in>
+        </df>
+        <df name="fiblib">
+          <df name="include">
+            <df name="fiblib">
+              <in>Fibonacci.h</in>
+              <in>fiblib_api.h</in>
+            </df>
+          </df>
+          <df name="source">
+            <in>Fibonacci.cpp</in>
+          </df>
+        </df>
+        <df name="tests">
+          <df name="fiblib-test">
+            <in>fibonacci_test.cpp</in>
+            <in>main.cpp</in>
+          </df>
+        </df>
+      </df>
+    </df>
+  </logicalFolder>
+  <projectmakefile>build/Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <rundir>build</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>
