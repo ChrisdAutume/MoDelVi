@@ -1,7 +1,7 @@
 
 #include <modelvilib/Fibonacci.h>
 #include <yarp/math/Math.h>
-
+#include <iostream>
 namespace fiblib
 {
     Fibonacci::Fibonacci()

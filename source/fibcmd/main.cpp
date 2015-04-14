@@ -8,6 +8,7 @@
 
 int main(int /*argc*/, char* /*argv*/[])
 {
+    std::cout << "Salut c'est moi qui ecrit ce programme :p"<< std::endl;
     std::cout << "Version: " << MODELVI_VERSION << std::endl;
     std::cout << "Fibonacci(8) = " << fiblib::Fibonacci()(8) << std::endl;
     std::cout << std::endl;

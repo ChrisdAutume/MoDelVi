@@ -2,7 +2,8 @@
 
 # Default options
 BUILD_DIR="build"
-CMAKE_GENERATOR="Unix Makefiles"
+#CMAKE_GENERATOR="Unix Makefiles"
+CMAKE_GENERATOR="Xcode"
 BUILD_TYPE="Release"
 INSTALL_OPTIONS=""
 EXTRA_OPTIONS=""
