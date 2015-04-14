@@ -4,14 +4,15 @@ message(STATUS "Lib ${target}")
 
 
 # External libraries
-
-# e.g., find_package(THIRDPARTY REQUIRED)
-
+FIND_PACKAGE(YARP REQUIRED)
+FIND_PACKAGE(ICUB REQUIRED)
+FIND_PACKAGE(OpenCV REQUIRED )
 
 # Includes
 
 include_directories(
-    # e.g., ${TRDP_INCLUDE_DIR}
+    ${YARP_INCLUDE_DIRS} 
+    ${ICUB_INCLUDE_DIRS}
 )
 
 include_directories(
@@ -23,7 +24,9 @@ include_directories(
 # Libraries
 
 set(libs
-    # e.g., ${THIRDPARTY_LIBRARY}
+    ${YARP_LIBRARIES} 
+    ${ICUB_LIBRARIES} 
+    ${OpenCV_LIBS}
 )
 
 

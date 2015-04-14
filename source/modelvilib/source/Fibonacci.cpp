@@ -1,5 +1,6 @@
 
 #include <modelvilib/Fibonacci.h>
+#include <yarp/math/Math.h>
 
 namespace fiblib
 {
