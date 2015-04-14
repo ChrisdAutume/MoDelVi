@@ -1,6 +1,6 @@
 #pragma once
 
-#include <fiblib/fiblib_api.h>
+#include <modelvilib/fiblib_api.h>
 
 namespace fiblib
 {

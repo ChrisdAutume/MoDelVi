@@ -16,7 +16,7 @@ include_directories(
 
 include_directories(
     BEFORE
-    ${CMAKE_SOURCE_DIR}/source/fiblib/include
+    ${CMAKE_SOURCE_DIR}/source/modelvilib/include
 )
 
 
@@ -24,7 +24,7 @@ include_directories(
 
 set(libs
     # e.g., ${TRDP_LIBRARIES}
-    fiblib
+    modelvilib
 )
 
 

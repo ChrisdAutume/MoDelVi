@@ -1,5 +1,5 @@
 
-set(target fiblib)
+set(target modelvilib)
 message(STATUS "Lib ${target}")
 
 

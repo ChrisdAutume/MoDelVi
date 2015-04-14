@@ -23,6 +23,7 @@ release_build
 /bin
 /lib
 /install
+/nbproject
 
 # Qt cache
 CMakeLists.txt.user

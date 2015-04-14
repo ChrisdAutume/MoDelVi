@@ -4,7 +4,7 @@
 #include <string>
 
 #include <modelvi-version.h>
-#include <fiblib/Fibonacci.h>
+#include <modelvilib/Fibonacci.h>
 
 int main(int /*argc*/, char* /*argv*/[])
 {
