@@ -35,7 +35,7 @@ set(libs
 if (OPTION_BUILD_STATIC)
     add_definitions("-D${META_PROJECT_NAME_UPPER}_STATIC")
 else()
-    add_definitions("-DFIBLIB_EXPORTS")
+    add_definitions("-DMODELVILIB_EXPORTS")
 endif()
 
 
@@ -45,12 +45,11 @@ set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 set(api_includes
-    ${include_path}/fiblib_api.h
-    ${include_path}/Fibonacci.h
+    ${include_path}/AbstractImage.h
 )
 
 set(sources
-    ${source_path}/Fibonacci.cpp
+    #${source_path}/Fibonacci.cpp
 )
 
 # Group source files

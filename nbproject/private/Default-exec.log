@@ -1,19 +1,19 @@
 called: /usr/bin/g++
-	/aber/ced13/Desktop/MoDelVi/build/source/fiblib
+	/aber/ced13/Desktop/MoDelVi/build/source/modelvilib
 	/usr/bin/g++
 	-DFIBLIB_EXPORTS
 	-DLINUX
 	-DNDEBUG
 	-DPIC
 	-D_REENTRANT
-	-Dfiblib_EXPORTS
+	-Dmodelvilib_EXPORTS
 	-g3
 	-gdwarf-2
 	-std=gnu++11
 	-O3
 	-DNDEBUG
 	-fPIC
-	-I/aber/ced13/Desktop/MoDelVi/source/fiblib/include
+	-I/aber/ced13/Desktop/MoDelVi/source/modelvilib/include
 	-I/aber/ced13/Desktop/MoDelVi/build/source
 	-fno-exceptions
 	-pthread
@@ -28,12 +28,12 @@ called: /usr/bin/g++
 	-Wcast-align
 	-Wconversion
 	-o
-	CMakeFiles/fiblib.dir/source/Fibonacci.cpp.o
+	CMakeFiles/modelvilib.dir/source/Fibonacci.cpp.o
 	-c
-	/aber/ced13/Desktop/MoDelVi/source/fiblib/source/Fibonacci.cpp
+	/aber/ced13/Desktop/MoDelVi/source/modelvilib/source/Fibonacci.cpp
 
 called: /usr/bin/g++
-	/aber/ced13/Desktop/MoDelVi/build/source/fiblib
+	/aber/ced13/Desktop/MoDelVi/build/source/modelvilib
 	/usr/bin/g++
 	-fPIC
 	-g3
@@ -43,13 +43,13 @@ called: /usr/bin/g++
 	-DNDEBUG
 	-pthread
 	-shared
-	-Wl,-soname,libfiblib.so
+	-Wl,-soname,libmodelvilib.so
 	-o
-	../../libfiblib.so
-	CMakeFiles/fiblib.dir/source/Fibonacci.cpp.o
+	../../libmodelvilib.so
+	CMakeFiles/modelvilib.dir/source/Fibonacci.cpp.o
 
 called: /usr/bin/ld
-	/aber/ced13/Desktop/MoDelVi/build/source/fiblib
+	/aber/ced13/Desktop/MoDelVi/build/source/modelvilib
 	/usr/bin/ld
 	--sysroot=/
 	--build-id
@@ -62,7 +62,7 @@ called: /usr/bin/ld
 	-z
 	relro
 	-o
-	../../libfiblib.so
+	../../libmodelvilib.so
 	/usr/lib/gcc/x86_64-linux-gnu/4.8/../../../x86_64-linux-gnu/crti.o
 	/usr/lib/gcc/x86_64-linux-gnu/4.8/crtbeginS.o
 	-L/usr/lib/gcc/x86_64-linux-gnu/4.8
@@ -74,8 +74,8 @@ called: /usr/bin/ld
 	-L/usr/lib/../lib
 	-L/usr/lib/gcc/x86_64-linux-gnu/4.8/../../..
 	-soname
-	libfiblib.so
-	CMakeFiles/fiblib.dir/source/Fibonacci.cpp.o
+	libmodelvilib.so
+	CMakeFiles/modelvilib.dir/source/Fibonacci.cpp.o
 	-lstdc++
 	-lm
 	-lgcc_s

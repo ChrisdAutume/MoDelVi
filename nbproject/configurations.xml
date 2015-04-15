@@ -6,7 +6,12 @@
         <df name="fibcmd">
           <in>main.cpp</in>
         </df>
-        <df name="fiblib">
+        <df name="modelvilib">
+          <df name="include">
+            <df name="modelvilib">
+              <in>AbstractImage.h</in>
+            </df>
+          </df>
           <df name="source">
             <in>Fibonacci.cpp</in>
           </df>
@@ -34,7 +39,8 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0" commonFlags="-std=gnu++11 -O3 -fno-exceptions -fPIC"/>
+        <element flagsID="0" commonFlags="-std=gnu++11 -O3 -fPIC -fno-exceptions -fPIC"/>
+        <element flagsID="1" commonFlags="-std=gnu++11 -O3 -fno-exceptions -fPIC"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -43,8 +49,12 @@
           <buildCommandWorkingDir>build</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>build/fibcmd</executablePath>
           <ccTool>
+            <incDir>
+              <pElem>source/modelvilib/include</pElem>
+              <pElem>build/source</pElem>
+            </incDir>
             <preprocessorList>
               <Elem>LINUX</Elem>
               <Elem>NDEBUG</Elem>
@@ -57,43 +67,37 @@
       <folder path="0/source/fibcmd">
         <ccTool>
           <incDir>
-            <pElem>source/fiblib/include</pElem>
-            <pElem>build/source</pElem>
             <pElem>build/source/fibcmd</pElem>
           </incDir>
         </ccTool>
       </folder>
-      <folder path="0/source/fiblib">
+      <folder path="0/source/modelvilib">
         <ccTool>
           <incDir>
-            <pElem>source/fiblib/source</pElem>
-            <pElem>source/fiblib/include/fiblib</pElem>
-            <pElem>source/fiblib/include</pElem>
+            <pElem>/usr/include/opencv</pElem>
+            <pElem>build/source/modelvilib</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>FIBLIB_EXPORTS=1</Elem>
-            <Elem>LINUX=1</Elem>
-            <Elem>NDEBUG=1</Elem>
-            <Elem>PIC=1</Elem>
-            <Elem>_FORTIFY_SOURCE=2</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__GNUC_STDC_INLINE__=1</Elem>
-            <Elem>__GXX_EXPERIMENTAL_CXX0X__=1</Elem>
-            <Elem>__OPTIMIZE__=1</Elem>
-            <Elem>__PIC__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__pic__=2</Elem>
-            <Elem>fiblib_EXPORTS=1</Elem>
+            <Elem>FIBLIB_EXPORTS</Elem>
+            <Elem>modelvilib_EXPORTS</Elem>
           </preprocessorList>
         </ccTool>
       </folder>
       <item path="source/fibcmd/main.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
         </ccTool>
       </item>
-      <item path="source/fiblib/source/Fibonacci.cpp" ex="false" tool="1" flavor2="4">
+      <item path="source/modelvilib/include/modelvilib/AbstractImage.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/source/Fibonacci.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
       </item>
     </conf>
   </confs>
