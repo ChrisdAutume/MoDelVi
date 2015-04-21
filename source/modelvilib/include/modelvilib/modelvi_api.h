@@ -1,24 +1,24 @@
 #pragma once
 
 #ifdef _MSC_VER
-#   define FIBLIB_API_EXPORT_DECLARATION __declspec(dllexport)
-#   define FIBLIB_API_IMPORT_DECLARATION __declspec(dllimport)
+#   define MODELVI_API_EXPORT_DECLARATION __declspec(dllexport)
+#   define MODELVI_API_IMPORT_DECLARATION __declspec(dllimport)
 #elif __GNUC__
-#	define FIBLIB_API_EXPORT_DECLARATION __attribute__ ((visibility ("default")))
-#	define FIBLIB_API_IMPORT_DECLARATION __attribute__ ((visibility ("default")))
+#	define MODELVI_API_EXPORT_DECLARATION __attribute__ ((visibility ("default")))
+#	define MODELVI_API_IMPORT_DECLARATION __attribute__ ((visibility ("default")))
 #else
-#   define FIBLIB_API_EXPORT_DECLARATION
-#   define FIBLIB_API_IMPORT_DECLARATION
+#   define MODELVI_API_EXPORT_DECLARATION
+#   define MODELVI_API_IMPORT_DECLARATION
 #endif 
 
 #ifndef MODELVI_STATIC
-#ifdef FIBLIB_EXPORTS
-#   define FIBLIB_API FIBLIB_API_EXPORT_DECLARATION
+#ifdef MODELVI_EXPORTS
+#   define MODELVI_API MODELVI_API_EXPORT_DECLARATION
 #else
-#   define FIBLIB_API FIBLIB_API_IMPORT_DECLARATION
+#   define MODELVI_API MODELVI_API_IMPORT_DECLARATION
 #endif
 #else
-#   define FIBLIB_API
+#   define MODELVI_API
 #endif
 
 #ifdef N_DEBUG

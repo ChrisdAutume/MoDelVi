@@ -45,11 +45,13 @@ set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 set(api_includes
+    ${include_path}/modelvi_api.h
     ${include_path}/AbstractImage.h
+    ${include_path}/FileImage.h
 )
 
 set(sources
-    #${source_path}/Fibonacci.cpp
+    ${source_path}/FileImage.cpp
 )
 
 # Group source files

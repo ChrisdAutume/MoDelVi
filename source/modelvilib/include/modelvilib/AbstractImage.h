@@ -8,20 +8,29 @@
 #ifndef ABSTRACTIMAGE_H
 #define	ABSTRACTIMAGE_H
 
+#include <modelvilib/modelvi_api.h>
 #include <opencv2/opencv.hpp>
+
 namespace MoDelVi
 {
     namespace Acquisition
     {
-        class Image
+        class MODELVI_API Image
         {
+        protected:
+            enum state {
+                IMAGE_NOLOADED,
+                IMAGE_LOADED
+            };
             IplImage* m_image;
+            state m_state = IMAGE_NOLOADED;
         public:
-            Image();
-            IplImage* getIplImage() = 0
+            
+            IplImage* getIplImage()
             {
                 return m_image;
             };
+            bool isLoaded() { return m_state == IMAGE_LOADED; };
         };
     }
     

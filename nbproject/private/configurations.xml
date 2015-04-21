@@ -47,6 +47,8 @@
           <df name="modelvilib">
             <df name="CMakeFiles">
               <df name="modelvilib.dir">
+                <df name="source">
+                </df>
               </df>
             </df>
           </df>
@@ -73,12 +75,13 @@
           <df name="include">
             <df name="modelvilib">
               <in>AbstractImage.h</in>
-              <in>Fibonacci.h</in>
-              <in>fiblib_api.h</in>
+              <in>FileImage.h</in>
+              <in>modelvi_api.h</in>
             </df>
           </df>
           <df name="source">
             <in>Fibonacci.cpp</in>
+            <in>FileImage.cpp</in>
           </df>
         </df>
       </df>

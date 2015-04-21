@@ -2,18 +2,26 @@
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
+      <df name="build">
+        <df name="CMakeFiles">
+          <df name="2.8.12.2">
+            <df name="CompilerIdC">
+              <in>CMakeCCompilerId.c</in>
+            </df>
+            <df name="CompilerIdCXX">
+              <in>CMakeCXXCompilerId.cpp</in>
+            </df>
+          </df>
+        </df>
+      </df>
       <df name="source">
         <df name="fibcmd">
           <in>main.cpp</in>
         </df>
         <df name="modelvilib">
-          <df name="include">
-            <df name="modelvilib">
-              <in>AbstractImage.h</in>
-            </df>
-          </df>
           <df name="source">
             <in>Fibonacci.cpp</in>
+            <in>FileImage.cpp</in>
           </df>
         </df>
       </df>
@@ -50,36 +58,30 @@
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath>build/fibcmd</executablePath>
-          <ccTool>
-            <incDir>
-              <pElem>source/modelvilib/include</pElem>
-              <pElem>build/source</pElem>
-            </incDir>
-            <preprocessorList>
-              <Elem>LINUX</Elem>
-              <Elem>NDEBUG</Elem>
-              <Elem>PIC</Elem>
-              <Elem>_REENTRANT</Elem>
-            </preprocessorList>
-          </ccTool>
         </makeTool>
       </makefileType>
+      <item path="build/CMakeFiles/2.8.12.2/CompilerIdC/CMakeCCompilerId.c"
+            ex="false"
+            tool="0"
+            flavor2="2">
+      </item>
+      <item path="build/CMakeFiles/2.8.12.2/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
       <folder path="0/source/fibcmd">
         <ccTool>
           <incDir>
+            <pElem>source/modelvilib/include</pElem>
+            <pElem>build/source</pElem>
             <pElem>build/source/fibcmd</pElem>
           </incDir>
-        </ccTool>
-      </folder>
-      <folder path="0/source/modelvilib">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/include/opencv</pElem>
-            <pElem>build/source/modelvilib</pElem>
-          </incDir>
           <preprocessorList>
-            <Elem>FIBLIB_EXPORTS</Elem>
-            <Elem>modelvilib_EXPORTS</Elem>
+            <Elem>LINUX</Elem>
+            <Elem>NDEBUG</Elem>
+            <Elem>PIC</Elem>
+            <Elem>_REENTRANT</Elem>
           </preprocessorList>
         </ccTool>
       </folder>
@@ -87,16 +89,30 @@
         <ccTool flags="1">
         </ccTool>
       </item>
-      <item path="source/modelvilib/include/modelvilib/AbstractImage.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="source/modelvilib/source/Fibonacci.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+      </item>
+      <item path="source/modelvilib/source/FileImage.cpp"
             ex="false"
             tool="1"
             flavor2="8">
         <ccTool flags="0">
+          <incDir>
+            <pElem>source/modelvilib/include</pElem>
+            <pElem>build/source</pElem>
+            <pElem>/usr/include/opencv</pElem>
+            <pElem>build/source/modelvilib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>LINUX</Elem>
+            <Elem>MODELVILIB_EXPORTS</Elem>
+            <Elem>NDEBUG</Elem>
+            <Elem>PIC</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>modelvilib_EXPORTS</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
     </conf>
