@@ -32,11 +32,14 @@ namespace MoDelVi
         {
         protected:
             IplImage* m_greyScale;
+            IplImage* m_result;
+            
             void filter();
+            void findShapes();
         public:
             ShapesAnalyser();
             ShapesAnalyser(Acquisition::AbstractImage* img);
-            
+            IplImage* getResultIpl() { return m_result;};
             virtual void proceed();
 
         };

@@ -20,14 +20,22 @@
 
 int main(int /*argc*/, char* /*argv*/[])
 {
-    std::cout << "Salut c'est moi qui ecrit ce programme :p"<< std::endl;
-    std::cout << "Version: " << MODELVI_VERSION << std::endl;
-    std::cout << "Oups = " << std::endl;
-    std::cout << std::endl;
-    MoDelVi::Acquisition::FileImage test("../data/samplePicture/frame000.ppm");
+    std::cout << "Version: " << MODELVI_VERSION << std::endl;  
+    
+    MoDelVi::Acquisition::FileImage test{"../data/samplePicture/crop.ppm"};
     MoDelVi::Analyse::ShapesAnalyser test2{&test};
-    test.reLoadData();
-    test2.proceed();
-    cvWaitKey(10);
+    
+    while(true)
+    {
+        test2.proceed();
+        s
+        cvNamedWindow("Resultat");
+        cvShowImage("Resultat", test2.getResultIpl());
+        if (cv::waitKey(30) >= 0)
+        {
+            std::cout<<"Touch pressed by user. Bye :D"<<std::endl;
+            break;
+        }
+    }
     return 0;
 }
