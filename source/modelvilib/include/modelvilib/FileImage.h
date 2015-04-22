@@ -16,7 +16,7 @@ namespace MoDelVi
 {
     namespace Acquisition
     {
-        class MODELVI_API FileImage:Image
+        class MODELVI_API FileImage: public AbstractImage
         {
             std::string m_filename;
             void loadFile();

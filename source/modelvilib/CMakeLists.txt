@@ -47,11 +47,15 @@ set(source_path "${CMAKE_CURRENT_SOURCE_DIR}/source")
 set(api_includes
     ${include_path}/modelvi_api.h
     ${include_path}/AbstractImage.h
+    ${include_path}/AbstractAnalyser.h
     ${include_path}/FileImage.h
+    ${include_path}/ShapesAnalyser.h
 )
 
 set(sources
     ${source_path}/FileImage.cpp
+    ${source_path}/AbstractAnalyser.cpp
+    ${source_path}/ShapesAnalyser.cpp
 )
 
 # Group source files
