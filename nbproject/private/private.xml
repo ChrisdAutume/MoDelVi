@@ -14,8 +14,10 @@
             <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/CMakeLists.txt</file>
             <file>file:/aber/ced13/Desktop/MoDelVi/source/fibcmd/main.cpp</file>
             <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/FileImage.h</file>
+            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/source/ShapesAnalyser.cpp</file>
             <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/modelvi_api.h</file>
             <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/source/FileImage.cpp</file>
+            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/source/AbstractAnalyser.cpp</file>
             <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/AbstractImage.h</file>
         </group>
     </open-files>

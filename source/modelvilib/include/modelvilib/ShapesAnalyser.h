@@ -36,6 +36,7 @@ namespace MoDelVi
             
             void filter();
             void findShapes();
+            void findShapesUsingCanny();
         public:
             ShapesAnalyser();
             ShapesAnalyser(Acquisition::AbstractImage* img);

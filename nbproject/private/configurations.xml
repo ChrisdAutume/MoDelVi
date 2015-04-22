@@ -25,6 +25,10 @@
               <df name="docs-doxygen.dir">
               </df>
             </df>
+            <df name="html">
+              <df name="search">
+              </df>
+            </df>
           </df>
         </df>
         <df name="packages">
@@ -74,14 +78,17 @@
         <df name="modelvilib">
           <df name="include">
             <df name="modelvilib">
+              <in>AbstractAnalyser.h</in>
               <in>AbstractImage.h</in>
               <in>FileImage.h</in>
+              <in>ShapesAnalyser.h</in>
               <in>modelvi_api.h</in>
             </df>
           </df>
           <df name="source">
-            <in>Fibonacci.cpp</in>
+            <in>AbstractAnalyser.cpp</in>
             <in>FileImage.cpp</in>
+            <in>ShapesAnalyser.cpp</in>
           </df>
         </df>
       </df>
