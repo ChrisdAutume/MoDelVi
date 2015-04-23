@@ -15,7 +15,8 @@ namespace MoDelVi
         ShapesAnalyser::ShapesAnalyser(): AbstractAnalyser() {
         }
         ShapesAnalyser::ShapesAnalyser(Acquisition::AbstractImage* img)
-        :AbstractAnalyser(img)
+        :AbstractAnalyser(img),
+        m_grayTreshold(150)
         {
             if(m_attachedImg->isLoaded())
                 std::cout<<"Img loaded by shapes class"<<std::endl;
@@ -28,15 +29,16 @@ namespace MoDelVi
         void ShapesAnalyser::proceed() {
             cvCopy(m_attachedImg->getIplImage(), m_result);
             filter();
-            findShapes();
+            //findShapes();
             findShapesUsingCanny();
             //m_result = m_greyScale;
         }
 
         void ShapesAnalyser::filter() {
-            //cvSmooth(m_attachedImg->getIplImage(), m_attachedImg->getIplImage(), CV_GAUSSIAN,3,3); 
+            cvSmooth(m_attachedImg->getIplImage(), m_attachedImg->getIplImage(), CV_GAUSSIAN,3,3); 
             m_greyScale = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()), 8, 1); 
             cvCvtColor(m_attachedImg->getIplImage(),m_greyScale,CV_BGR2GRAY);
+            cvThreshold(m_greyScale,m_greyScale,m_grayTreshold,255,CV_THRESH_BINARY_INV);
         }
 
         void ShapesAnalyser::findShapesUsingCanny() {
@@ -67,8 +69,6 @@ namespace MoDelVi
             CvSeq* result;
             CvMemStorage *storage = cvCreateMemStorage(0);
             
-            //Treshold Gray
-            cvThreshold(m_greyScale,m_greyScale,100,255,CV_THRESH_BINARY_INV);
             //finding all contours in the image
             cvFindContours(m_greyScale, storage, &contour, sizeof(CvContour), CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE, cvPoint(0,0));
             

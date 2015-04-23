@@ -33,6 +33,7 @@ namespace MoDelVi
         protected:
             IplImage* m_greyScale;
             IplImage* m_result;
+            int m_grayTreshold;
             
             void filter();
             void findShapes();
@@ -41,6 +42,7 @@ namespace MoDelVi
             ShapesAnalyser();
             ShapesAnalyser(Acquisition::AbstractImage* img);
             IplImage* getResultIpl() { return m_result;};
+            int* getGrayTreshold() { return &m_grayTreshold; };
             virtual void proceed();
 
         };

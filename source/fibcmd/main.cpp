@@ -22,10 +22,12 @@ int main(int /*argc*/, char* /*argv*/[])
 {
     std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     
-    MoDelVi::Acquisition::FileImage file{"../data/samplePicture/simple.png"};
+    MoDelVi::Acquisition::FileImage file{"../data/samplePicture/frame139.ppm"};
     MoDelVi::Analyse::ShapesAnalyser shapes{&file};
     
     cvNamedWindow("Shapes detection");
+    cvNamedWindow("Control", 1);
+    cv::createTrackbar("Gray Treshold", "Control", shapes.getGrayTreshold(), 255);
     while(true)
     {
         shapes.proceed();
