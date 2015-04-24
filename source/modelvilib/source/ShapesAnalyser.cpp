@@ -27,6 +27,8 @@ namespace MoDelVi
         }
 
         void ShapesAnalyser::proceed() {
+            //cvReleaseImage(&m_result);
+            //cvReleaseImage(&m_greyScale);
             cvCopy(m_attachedImg->getIplImage(), m_result);
             filter();
             //findShapes();
@@ -35,6 +37,7 @@ namespace MoDelVi
         }
 
         void ShapesAnalyser::filter() {
+            
             cvSmooth(m_attachedImg->getIplImage(), m_attachedImg->getIplImage(), CV_GAUSSIAN,3,3); 
             m_greyScale = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()), 8, 1); 
             cvCvtColor(m_attachedImg->getIplImage(),m_greyScale,CV_BGR2GRAY);
@@ -61,7 +64,6 @@ namespace MoDelVi
                cv::drawContours( draw, contours, i, color, 2, 8, hierarchy, 0, cv::Point() );
             }
             cv::imshow( "Canny edge detection", draw );
-           
         }
 
         void ShapesAnalyser::findShapes() {

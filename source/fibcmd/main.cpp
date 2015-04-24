@@ -22,7 +22,7 @@ int main(int /*argc*/, char* /*argv*/[])
 {
     std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     
-    MoDelVi::Acquisition::FileImage file{"../data/samplePicture/frame139.ppm"};
+    MoDelVi::Acquisition::FileImage file{"../data/samplePicture/crop.ppm"};
     MoDelVi::Analyse::ShapesAnalyser shapes{&file};
     
     cvNamedWindow("Shapes detection");

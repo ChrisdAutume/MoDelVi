@@ -43,7 +43,7 @@ namespace MoDelVi
             IplImage* m_image;
             state m_state = IMAGE_NOLOADED;
         public:
-            
+            ~AbstractImage(){cvReleaseImage(&m_image);};
             IplImage* getIplImage()
             {
                 return m_image;
