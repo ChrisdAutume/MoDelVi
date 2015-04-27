@@ -24,12 +24,15 @@ namespace MoDelVi
             // Create result IMG
             m_result = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()),IPL_DEPTH_8U, 3);
             cvZero(m_result);
+            m_greyScale = NULL;
         }
 
         void ShapesAnalyser::proceed() {
-            //cvReleaseImage(&m_result);
-            //cvReleaseImage(&m_greyScale);
-            cvCopy(m_attachedImg->getIplImage(), m_result);
+            
+            cvReleaseImage(&m_result);
+            if(m_greyScale)
+                cvReleaseImage(&m_greyScale);
+            m_result = cvCloneImage(m_attachedImg->getIplImage());
             filter();
             //findShapes();
             findShapesUsingCanny();

@@ -22,8 +22,8 @@ int main(int /*argc*/, char* /*argv*/[])
 {
     std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     
-    MoDelVi::Acquisition::FileImage file{"../data/samplePicture/crop.ppm"};
-    MoDelVi::Analyse::ShapesAnalyser shapes{&file};
+    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"../data/samplePicture/crop.ppm"};
+    MoDelVi::Analyse::ShapesAnalyser shapes{file};
     
     cvNamedWindow("Shapes detection");
     cvNamedWindow("Control", 1);
@@ -38,5 +38,6 @@ int main(int /*argc*/, char* /*argv*/[])
             break;
         }
     }
+
     return 0;
 }
