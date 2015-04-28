@@ -68,6 +68,7 @@ namespace MoDelVi
             }
             cv::imshow( "Canny edge detection", draw );
         }
+        
 
         void ShapesAnalyser::findShapes() {
             CvSeq* contour;

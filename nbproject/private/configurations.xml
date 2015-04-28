@@ -3,6 +3,8 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
       <df name="build">
+        <df name="build">
+        </df>
         <df name="CMakeFiles">
           <df name="2.8.12.2">
             <df name="CompilerIdC">
@@ -25,8 +27,57 @@
               <df name="docs-doxygen.dir">
               </df>
             </df>
-            <df name="html">
-              <df name="search">
+          </df>
+        </df>
+        <df name="packages">
+          <df name="CMakeFiles">
+            <df name="pack-MoDelVi.dir">
+            </df>
+            <df name="pack.dir">
+            </df>
+          </df>
+        </df>
+        <df name="source">
+          <df name="CMakeFiles">
+          </df>
+          <df name="fibcmd">
+            <df name="CMakeFiles">
+              <df name="fibcmd.dir">
+              </df>
+            </df>
+          </df>
+          <df name="modelvilib">
+            <df name="CMakeFiles">
+              <df name="modelvilib.dir">
+                <df name="source">
+                </df>
+              </df>
+            </df>
+          </df>
+          <in>modelvi-version.h</in>
+        </df>
+      </df>
+      <df name="build-debug">
+        <df name="CMakeFiles">
+          <df name="2.8.12.2">
+            <df name="CompilerIdC">
+              <in>CMakeCCompilerId.c</in>
+            </df>
+            <df name="CompilerIdCXX">
+              <in>CMakeCXXCompilerId.cpp</in>
+            </df>
+          </df>
+          <df name="CMakeTmp">
+          </df>
+        </df>
+        <df name="docs">
+          <df name="CMakeFiles">
+            <df name="docs.dir">
+            </df>
+          </df>
+          <df name="doxygen">
+            <df name="CMakeFiles">
+              <df name="docs-doxygen.dir">
               </df>
             </df>
           </df>
@@ -121,6 +172,9 @@
         </gdb_interceptlist>
         <gdb_options>
           <DebugOptions>
+            <option name="gdb_init_file" value="/data/MoDelVi/build-debug/db.gdb"/>
+            <option name="gdb_source_dirs" value="source"/>
+            <option name="debug_dir" value="/data/MoDelVi/build-debug"/>
           </DebugOptions>
         </gdb_options>
         <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
@@ -134,6 +188,51 @@
         </runcommandpicklist>
         <runcommand>"${OUTPUT_PATH}"</runcommand>
         <rundir>build</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+    <conf name="Debug" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <rundir></rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>

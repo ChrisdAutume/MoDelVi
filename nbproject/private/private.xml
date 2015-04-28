@@ -10,15 +10,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/CMakeLists.txt</file>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/CMakeLists.txt</file>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/fibcmd/main.cpp</file>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/FileImage.h</file>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/source/ShapesAnalyser.cpp</file>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/modelvi_api.h</file>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/source/FileImage.cpp</file>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/source/AbstractAnalyser.cpp</file>
-            <file>file:/aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/AbstractImage.h</file>
+            <file>file:/data/MoDelVi/source/modelvilib/include/modelvilib/AbstractImage.h</file>
+            <file>file:/data/MoDelVi/source/modelvilib/source/ShapesAnalyser.cpp</file>
+            <file>file:/data/MoDelVi/source/fibcmd/main.cpp</file>
         </group>
     </open-files>
 </project-private>

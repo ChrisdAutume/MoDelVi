@@ -1,13 +1,4 @@
-[ 50%] Building CXX object source/modelvilib/CMakeFiles/modelvilib.dir/source/FileImage.cpp.o
-In file included from /aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/FileImage.h:11:0,
-                 from /aber/ced13/Desktop/MoDelVi/source/modelvilib/source/FileImage.cpp:8:
-/aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/AbstractImage.h:22:13: error: initializer specified for non-virtual method ‘MoDelVi::Acquisition::Image::Image()’
-             Image() = 0;
-             ^
-In file included from /aber/ced13/Desktop/MoDelVi/source/modelvilib/source/FileImage.cpp:8:0:
-/aber/ced13/Desktop/MoDelVi/source/modelvilib/include/modelvilib/FileImage.h:21:19: error: ISO C++ forbids declaration of ‘Image’ with no type [-fpermissive]
-             Image();
-                   ^
-make[2]: *** [source/modelvilib/CMakeFiles/modelvilib.dir/source/FileImage.cpp.o] Error 1
+/bin/sh: 1: cd: can't cd to /aber/ced13/Desktop/MoDelVi/build
+make[2]: *** [source/modelvilib/CMakeFiles/modelvilib.dir/depend] Error 2
 make[1]: *** [source/modelvilib/CMakeFiles/modelvilib.dir/all] Error 2
 make: *** [all] Error 2
