@@ -48,6 +48,7 @@
           </df>
           <df name="source">
             <in>AbstractAnalyser.cpp</in>
+            <in>AbstractImage.cpp</in>
             <in>FileImage.cpp</in>
             <in>ShapesAnalyser.cpp</in>
           </df>
@@ -141,6 +142,11 @@
             flavor2="8">
         <ccTool flags="0">
         </ccTool>
+      </item>
+      <item path="source/modelvilib/source/AbstractImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="source/modelvilib/source/FileImage.cpp"
             ex="false"
