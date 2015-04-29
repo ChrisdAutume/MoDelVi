@@ -12,6 +12,10 @@ namespace MoDelVi
     namespace Acquisition
     {
 
+        std::string FileImage::getFilename() {
+            return m_filename;
+        }
+        
         FileImage::FileImage(std::string filename) {
             m_filename = filename;
             loadFile();
@@ -26,6 +30,7 @@ namespace MoDelVi
         }
        void FileImage::loadFile() {
             m_image = cvLoadImage(m_filename.c_str());
+            
             if(m_image && m_image->imageSize>0)
                 m_state = IMAGE_LOADED;          
         }

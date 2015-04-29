@@ -53,6 +53,7 @@ set(api_includes
 )
 
 set(sources
+    ${source_path}/AbstractImage.cpp
     ${source_path}/FileImage.cpp
     ${source_path}/AbstractAnalyser.cpp
     ${source_path}/ShapesAnalyser.cpp
