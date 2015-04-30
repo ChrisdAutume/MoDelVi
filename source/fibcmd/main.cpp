@@ -34,6 +34,12 @@ int main(int /*argc*/, char* /*argv*/[])
 
     while(true)
     {
+        //ODD number is needed for blurr
+        while(blurr%2 == 0)
+            blurr++;
+        if(fov < 1)
+            fov = 1;
+        
         file->setBlurr(blurr);
         file->setFov(fov);
         shapes.proceed();

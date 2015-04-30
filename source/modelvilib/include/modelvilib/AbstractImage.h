@@ -46,6 +46,9 @@ namespace MoDelVi
             IplImage* m_transformImage;
             state m_state = IMAGE_NOLOADED;
             
+            int m_fov;
+            int m_blurr;
+            
             void prepareImage();
         public:
             ~AbstractImage();
@@ -54,10 +57,6 @@ namespace MoDelVi
             bool isLoaded();
             void setFov(int fov);
             void setBlurr(int blurr);
-            
-            //temp
-            int* m_fov;
-            int* m_blurr;
         };
     }
     
