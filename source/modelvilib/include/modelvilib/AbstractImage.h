@@ -48,6 +48,7 @@ namespace MoDelVi
             
             int m_fov;
             int m_blurr;
+            int m_brightness;
             
             void prepareImage();
         public:
@@ -57,6 +58,7 @@ namespace MoDelVi
             bool isLoaded();
             void setFov(int fov);
             void setBlurr(int blurr);
+            void setBrightness(int bright);
         };
     }
     

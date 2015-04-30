@@ -22,15 +22,17 @@ int main(int /*argc*/, char* /*argv*/[])
 {
     std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     
-    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"../data/samplePicture/frame000.ppm"};
+    //MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"../data/samplePicture/frame147.ppm"};
+    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"frame000.ppm"};
     MoDelVi::Analyse::ShapesAnalyser shapes{file};
     
-    int blurr=3,fov=100;
+    int blurr=3,fov=100, bright=200;
     cvNamedWindow("Shapes detection");
     cvNamedWindow("Control", 1);
     cv::createTrackbar("Gray Treshold", "Control", shapes.getGrayTreshold(), 255);
     cv::createTrackbar("Blurr", "Control", &blurr, 255);
     cv::createTrackbar("FOV", "Control", &fov, 100);
+    cv::createTrackbar("Brightness 0->200", "Control", &bright, 400);
 
     while(true)
     {
@@ -42,6 +44,7 @@ int main(int /*argc*/, char* /*argv*/[])
         
         file->setBlurr(blurr);
         file->setFov(fov);
+        file->setBrightness(bright-200);
         shapes.proceed();
         cvShowImage("Shapes detection", shapes.getResultIpl());
         if (cv::waitKey(30) >= 0)
