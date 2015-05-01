@@ -36,6 +36,9 @@
         <df name="fibcmd">
           <in>main.cpp</in>
         </df>
+        <df name="iCubVision">
+          <in>main.cpp</in>
+        </df>
         <df name="modelvilib">
           <df name="include">
             <df name="modelvilib">
@@ -120,6 +123,13 @@
           </incDir>
         </ccTool>
       </folder>
+      <folder path="0/source/iCubVision">
+        <ccTool>
+          <incDir>
+            <pElem>build/source/iCubVision</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
       <folder path="0/source/modelvilib">
         <ccTool>
           <incDir>
@@ -136,6 +146,10 @@
         <ccTool flags="1">
         </ccTool>
       </item>
+      <item path="source/iCubVision/main.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
       <item path="source/modelvilib/source/AbstractAnalyser.cpp"
             ex="false"
             tool="1"
@@ -146,7 +160,7 @@
       <item path="source/modelvilib/source/AbstractImage.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
       </item>
       <item path="source/modelvilib/source/FileImage.cpp"
             ex="false"
@@ -207,6 +221,8 @@
       <item path="build/source/modelvi-version.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="source/fibcmd/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/iCubVision/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/modelvilib/include/modelvilib/AbstractAnalyser.h"
             ex="false"

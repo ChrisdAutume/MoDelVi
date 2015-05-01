@@ -17,4 +17,5 @@ add_subdirectory(modelvilib)
 # Applications
 set(IDE_FOLDER "Applications")
 add_subdirectory(fibcmd)
+add_subdirectory(iCubVision)
 
