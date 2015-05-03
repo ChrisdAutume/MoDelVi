@@ -1,20 +1,9 @@
-# Cross-Platform C++ CMake Project Template
+# MoDelVi Lib
+## Compilation
 
-cmake-init is a copy and paste template, that provides the following features:
- * Cross Platform
-  * Windows
-  * Linux
-  * Mac
- * Libraries, Applications, Testing template
- * Documentation template
- * Installation, Packaging template
- * CMake find script template for defined libraries
+1/ ./configure (2 times)
+2/ cd build
+3/ make
 
-The files of cmake-init are an instantiation of the templates containing:
-  * Example app
-  * Example lib
-  * Example test
-  * Example documentation
-  * Example package
-
-## Status
+## Working demo
+- fibcmd
