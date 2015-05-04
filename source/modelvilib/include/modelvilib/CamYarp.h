@@ -19,12 +19,12 @@ namespace MoDelVi
 {
     namespace Manager
     {
-        class CamYarp : public yarp::os::PortReader {
+        class CamYarp {
         public:
             CamYarp(std::string name, int* acuity, int* fov, int* brightness, int* threshold);
             virtual ~CamYarp();
-
-            virtual bool read(yarp::os::ConnectionReader& connection);
+            void frame();
+            
         private:
             std::string m_name;
             

@@ -71,6 +71,7 @@ namespace MoDelVi
             bool running = true;
             while(running)
             {
+                for(int i=0; i<m_camList.size(); i++) m_camList.at(i)->frame();
                 //if(cv::waitKey(0)) running=false;
             }
             return 0;

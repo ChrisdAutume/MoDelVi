@@ -26,7 +26,6 @@ namespace MoDelVi
             std::cout<<"    * "<<suffix<<"in"<<std::endl;
             m_inPort.open(suffix+"in");
             m_inPort.setStrict();
-            m_inPort.setReader(*this);
             std::cout<<"    * "<<suffix<<"out"<<std::endl;
             m_outPort.open(suffix+"out");
             m_outPort.setStrict();
@@ -35,25 +34,14 @@ namespace MoDelVi
             m_dataPort.setStrict();
         }
 
-        bool CamYarp::read(yarp::os::ConnectionReader& connection) {
-            std::cout<<"["<<m_name<<" camera] Receiving things. ";
-            
-            if(connection.isTextMode())
-            {
-                std::cout<<"ERROR: Text mode"<<std::endl;
-                return false;
+        void CamYarp::frame() {
+            yarp::sig::ImageOf < yarp::sig::PixelRgb > *image = new yarp::sig::ImageOf < yarp::sig::PixelRgb >();
+            image = m_inPort.read();
+            if (image!=NULL) {
+                std::cout<<"["<<m_name<<" camera] Image receiving: "<<image->height()<<"x"<<image->width()<<std::endl;
             }
-            yarp::sig::ImageOf<yarp::sig::PixelRgb> *image = new yarp::sig::ImageOf<yarp::sig::PixelRgb>();
-            bool ok = image->read(connection);
-            if (!ok) 
-            {
-                return false;
-                std::cout<<"INCORRECT DATA"<<std::endl;
-            }else std::cout<<"PROCESSING"<<std::endl;
-            // process data in b
-            return true;
-            //std::cout<<"[IMAGE] receveid should be an image. size: "<<b.width()<<" x "<<b.height()<<std::endl;
         }
+
         CamYarp::~CamYarp() {
         }
     }
