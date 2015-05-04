@@ -35,10 +35,9 @@ namespace MoDelVi
             m_dataPort.setStrict();
         }
 
-        void CamYarp::onRead(yarp::os::Bottle& b) {
+        void CamYarp::onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b) {
             std::cout<<"["<<m_name<<" camera]";
-            std::cout<<"[BOTTLE] receveid should be an image. size: "<<b.size();
-            
+            std::cout<<"[IMAGE] receveid should be an image. size: "<<b.width()<<" x "<<b.height()<<std::endl;
         }
 
         CamYarp::~CamYarp() {

@@ -24,7 +24,7 @@ int main(int /*argc*/, char* /*argv*/[])
 {
     std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     MoDelVi::Manager::YarpManager manager;
-    manager.createCamera("biatch");
-    manager.createCamera("bitch");
+    manager.createCamera("right");
+    manager.createCamera("left");
     return manager.run();
 }
