@@ -6,7 +6,7 @@ message(STATUS "App ${target}")
 # External libraries
 
 # ...
-
+FIND_PACKAGE(OpenCV REQUIRED )
 
 # Includes
 

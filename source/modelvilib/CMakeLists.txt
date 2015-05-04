@@ -12,6 +12,7 @@ FIND_PACKAGE(OpenCV REQUIRED )
 
 include_directories(
     ${YARP_INCLUDE_DIRS} 
+    ${OpenCV_INCLUDE_DIRS} 
     #${ICUB_INCLUDE_DIRS}
 )
 
@@ -50,6 +51,8 @@ set(api_includes
     ${include_path}/AbstractAnalyser.h
     ${include_path}/FileImage.h
     ${include_path}/ShapesAnalyser.h
+    ${include_path}/YarpManager.h
+    ${include_path}/CamYarp.h
 )
 
 set(sources
@@ -57,6 +60,8 @@ set(sources
     ${source_path}/FileImage.cpp
     ${source_path}/AbstractAnalyser.cpp
     ${source_path}/ShapesAnalyser.cpp
+    ${source_path}/YarpManager.cpp
+    ${source_path}/CamYarp.cpp
 )
 
 # Group source files

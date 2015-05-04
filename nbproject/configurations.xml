@@ -44,16 +44,20 @@
             <df name="modelvilib">
               <in>AbstractAnalyser.h</in>
               <in>AbstractImage.h</in>
+              <in>CamYarp.h</in>
               <in>FileImage.h</in>
               <in>ShapesAnalyser.h</in>
+              <in>YarpManager.h</in>
               <in>modelvi_api.h</in>
             </df>
           </df>
           <df name="source">
             <in>AbstractAnalyser.cpp</in>
             <in>AbstractImage.cpp</in>
+            <in>CamYarp.cpp</in>
             <in>FileImage.cpp</in>
             <in>ShapesAnalyser.cpp</in>
+            <in>YarpManager.cpp</in>
           </df>
         </df>
       </df>
@@ -79,8 +83,9 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0" commonFlags="-std=gnu++11 -O3 -fPIC -fno-exceptions -fPIC"/>
-        <element flagsID="1" commonFlags="-std=gnu++11 -O3 -fno-exceptions -fPIC"/>
+        <element flagsID="0" commonFlags="-std=c++11 -O3"/>
+        <element flagsID="1" commonFlags="-std=c++11 -O3 -fPIC"/>
+        <element flagsID="2" commonFlags="-std=gnu++11 -O3 -fPIC -fno-exceptions -fPIC"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -109,16 +114,15 @@
             <pElem>build/source</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>LINUX</Elem>
             <Elem>NDEBUG</Elem>
-            <Elem>PIC</Elem>
-            <Elem>_REENTRANT</Elem>
           </preprocessorList>
         </ccTool>
       </folder>
       <folder path="0/source/fibcmd">
         <ccTool>
           <incDir>
+            <pElem>/usr/local/include/opencv</pElem>
+            <pElem>/usr/local/include</pElem>
             <pElem>build/source/fibcmd</pElem>
           </incDir>
         </ccTool>
@@ -126,16 +130,15 @@
       <folder path="0/source/iCubVision">
         <ccTool>
           <incDir>
+            <pElem>/usr/local/include/opencv</pElem>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/local/Cellar/yarp/2.3.63/include</pElem>
             <pElem>build/source/iCubVision</pElem>
           </incDir>
         </ccTool>
       </folder>
       <folder path="0/source/modelvilib">
         <ccTool>
-          <incDir>
-            <pElem>/usr/include/opencv</pElem>
-            <pElem>build/source/modelvilib</pElem>
-          </incDir>
           <preprocessorList>
             <Elem>MODELVILIB_EXPORTS</Elem>
             <Elem>modelvilib_EXPORTS</Elem>
@@ -143,37 +146,98 @@
         </ccTool>
       </folder>
       <item path="source/fibcmd/main.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="source/iCubVision/main.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="source/modelvilib/source/AbstractAnalyser.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>/usr/include/opencv</pElem>
+            <pElem>build/source/modelvilib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>LINUX</Elem>
+            <Elem>PIC</Elem>
+            <Elem>_REENTRANT</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="source/modelvilib/source/AbstractImage.cpp"
             ex="false"
             tool="1"
             flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/opencv</pElem>
+            <pElem>build/source/modelvilib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>LINUX</Elem>
+            <Elem>PIC</Elem>
+            <Elem>_REENTRANT</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="source/modelvilib/source/CamYarp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>/usr/local/include/opencv</pElem>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/local/Cellar/yarp/2.3.63/include</pElem>
+            <pElem>build/source/modelvilib</pElem>
+          </incDir>
+        </ccTool>
       </item>
       <item path="source/modelvilib/source/FileImage.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>/usr/local/include/opencv</pElem>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/local/Cellar/yarp/2.3.63/include</pElem>
+            <pElem>build/source/modelvilib</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="source/modelvilib/source/ShapesAnalyser.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>/usr/include/opencv</pElem>
+            <pElem>build/source/modelvilib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>LINUX</Elem>
+            <Elem>PIC</Elem>
+            <Elem>_REENTRANT</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="source/modelvilib/source/YarpManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>/usr/local/include/opencv</pElem>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/local/Cellar/yarp/2.3.63/include</pElem>
+            <pElem>build/source/modelvilib</pElem>
+          </incDir>
         </ccTool>
       </item>
     </conf>
@@ -234,12 +298,22 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="source/modelvilib/include/modelvilib/CamYarp.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="source/modelvilib/include/modelvilib/FileImage.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
       <item path="source/modelvilib/include/modelvilib/ShapesAnalyser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/include/modelvilib/YarpManager.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -254,12 +328,22 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="source/modelvilib/source/CamYarp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="source/modelvilib/source/FileImage.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
       <item path="source/modelvilib/source/ShapesAnalyser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/source/YarpManager.cpp"
             ex="false"
             tool="1"
             flavor2="0">
