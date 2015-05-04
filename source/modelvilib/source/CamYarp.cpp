@@ -26,6 +26,7 @@ namespace MoDelVi
             std::cout<<"    * "<<suffix<<"in"<<std::endl;
             m_inPort.open(suffix+"in");
             m_inPort.setStrict();
+            m_inPort.useCallback(*this);
             std::cout<<"    * "<<suffix<<"out"<<std::endl;
             m_outPort.open(suffix+"out");
             m_outPort.setStrict();
@@ -34,12 +35,9 @@ namespace MoDelVi
             m_dataPort.setStrict();
         }
 
-        void CamYarp::frame() {
-            yarp::sig::ImageOf < yarp::sig::PixelRgb > *image = new yarp::sig::ImageOf < yarp::sig::PixelRgb >();
-            image = m_inPort.read();
-            if (image!=NULL) {
-                std::cout<<"["<<m_name<<" camera] Image receiving: "<<image->height()<<"x"<<image->width()<<std::endl;
-            }
+        void CamYarp::onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b) {
+            std::cout<<"["<<m_name<<" camera]";
+            std::cout<<"[IMAGE] receveid should be an image. size: "<<b.width()<<" x "<<b.height()<<std::endl;
         }
 
         CamYarp::~CamYarp() {

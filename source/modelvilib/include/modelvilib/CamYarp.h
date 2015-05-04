@@ -19,12 +19,12 @@ namespace MoDelVi
 {
     namespace Manager
     {
-        class CamYarp {
+        class CamYarp : public yarp::os::TypedReaderCallback<yarp::sig::ImageOf<yarp::sig::PixelRgb>> {
         public:
             CamYarp(std::string name, int* acuity, int* fov, int* brightness, int* threshold);
             virtual ~CamYarp();
-            void frame();
-            
+            virtual void onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b);
+
         private:
             std::string m_name;
             
@@ -33,7 +33,7 @@ namespace MoDelVi
             int *m_brightness;
             int *m_threshold;
             
-            yarp::os::BufferedPort<yarp::os::Bottle> m_inPort;
+            yarp::os::BufferedPort<yarp::sig::ImageOf<yarp::sig::PixelRgb>> m_inPort;
             yarp::os::BufferedPort<yarp::os::Bottle> m_outPort;
             yarp::os::BufferedPort<yarp::os::Bottle> m_dataPort;
 
