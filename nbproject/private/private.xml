@@ -11,14 +11,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/fibcmd/main.cpp</file>
-            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/include/modelvilib/FileImage.h</file>
-            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/include/modelvilib/AbstractImage.h</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/CamYarp.cpp</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/iCubVision/CMakeLists.txt</file>
-            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/include/modelvilib/ShapesAnalyser.h</file>
-            <file>file:/Users/chris/Desktop/modelvi-lib/source/fibcmd/CMakeLists.txt</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/iCubVision/main.cpp</file>
-            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/AbstractImage.cpp</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/include/modelvilib/YarpManager.h</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/include/modelvilib/CamYarp.h</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/CMakeLists.txt</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/YarpManager.cpp</file>
         </group>
     </open-files>
 </project-private>
