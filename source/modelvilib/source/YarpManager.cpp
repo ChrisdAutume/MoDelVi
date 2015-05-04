@@ -71,7 +71,7 @@ namespace MoDelVi
             bool running = true;
             while(running)
             {
-                if(cv::waitKey(0)) running=false;
+                //if(cv::waitKey(0)) running=false;
             }
             return 0;
         }

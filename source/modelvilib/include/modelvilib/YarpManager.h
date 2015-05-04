@@ -41,8 +41,8 @@ namespace MoDelVi
             
             //Image parameter
             int m_acuity;
-            int m_fov;
             int m_brightness;
+            int m_fov;
             int m_threshold;
             
             //YARP port

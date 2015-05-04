@@ -43,7 +43,7 @@ namespace MoDelVi
                 std::cout<<"ERROR: Text mode"<<std::endl;
                 return false;
             }
-            yarp::sig::ImageOf<yarp::sig::PixelRgb> *image;
+            yarp::sig::ImageOf<yarp::sig::PixelRgb> *image = new yarp::sig::ImageOf<yarp::sig::PixelRgb>();
             bool ok = image->read(connection);
             if (!ok) 
             {
