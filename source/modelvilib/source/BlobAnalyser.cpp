@@ -43,7 +43,7 @@ namespace MoDelVi
         }
 
         std::string BlobAnalyser::getColor(cv::Point point) {
-            std::string result("Inconnu");
+            std::string result("any");
             
             cv::Mat img(m_attachedImg->getIplImage());
             cv::Vec3b bgrPixel = img.at<cv::Vec3b>(point.x,point.y);

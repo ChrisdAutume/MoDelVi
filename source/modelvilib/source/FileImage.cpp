@@ -23,7 +23,7 @@ namespace MoDelVi
 
         void FileImage::reLoadData() {
             cvReleaseImage(&m_image);
-            m_image = nullptr;
+            m_image = NULL;
             m_state = IMAGE_NOLOADED;
             
             loadFile();

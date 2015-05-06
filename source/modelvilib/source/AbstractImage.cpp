@@ -13,6 +13,7 @@ namespace MoDelVi
     {
 
         AbstractImage::AbstractImage() : m_fov(100), m_blurr(3), m_brightness(0) {
+m_state = IMAGE_NOLOADED;
             m_transformImage = cvCreateImage(cvSize(200, 200), IPL_DEPTH_32F, 1);
             m_RoiPt.x = 0; m_RoiPt.y=0;
         }
@@ -52,7 +53,7 @@ namespace MoDelVi
                 if(m_blurr>0)
                     cvSmooth(m_transformImage, m_transformImage, CV_GAUSSIAN,m_blurr,m_blurr);
        
-                m_state = IMAGE_READY;
+                m_state = IMAGE_LOADED;
                 cvResetImageROI(m_image);
             }
              

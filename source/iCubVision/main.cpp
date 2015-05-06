@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 
-#include <modelvi-version.h>
+//#include <modelvi-version.h>
 #include <modelvilib/FileImage.h>
 #include <modelvilib/ShapesAnalyser.h>
 
@@ -22,7 +22,7 @@
 
 int main(int /*argc*/, char* /*argv*/[])
 {
-    std::cout << "Version: " << MODELVI_VERSION << std::endl;  
+//    std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     MoDelVi::Manager::YarpManager manager;
     manager.createCamera("right");
     manager.createCamera("left");

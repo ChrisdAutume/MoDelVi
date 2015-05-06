@@ -54,7 +54,7 @@ namespace MoDelVi
             cv::Canny(grey,grey, 100, 200, 3);
             
             //Find contour
-            std::vector<std::vector<cv::Point>> contours;
+            std::vector<std::vector<cv::Point> > contours;
             std::vector<cv::Vec4i> hierarchy;
             
             cv::RNG rng(12345);

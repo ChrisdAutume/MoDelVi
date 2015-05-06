@@ -24,34 +24,41 @@ namespace MoDelVi
             std::cout<<"## "<<name<<" cam initialisation ##"<<std::endl;
             std::cout<<"- Opening YARP port"<<std::endl;
             std::cout<<"    * "<<suffix<<"in"<<std::endl;
-            m_inPort.open(suffix+"in");
+std::string full =suffix+"in";
+            m_inPort.open(full.c_str());
             m_inPort.setStrict();
             m_inPort.useCallback(*this);
             std::cout<<"    * "<<suffix<<"out"<<std::endl;
-            m_outPort.open(suffix+"out");
-            m_outPort.setStrict();
+full=suffix+"out";
+            m_outPort.open(full.c_str());
+            //m_outPort.setStrict();
             std::cout<<"    * "<<suffix<<"data"<<std::endl;
-            m_dataPort.open(suffix+"data");
+full=suffix+"data";
+            m_dataPort.open(full.c_str());
             m_dataPort.setStrict();
             
-            
+              cvNamedWindow("BlobDetection");
         }
 
         void CamYarp::onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b) {
+		
             Acquisition::YarpImage image(&b);
             image.setBlurr(*m_acuity);
             image.setBrightness(*m_brightness);
             image.setFov(*m_fov);
             
-            if(image.isLoaded())
-            {
+ //           if(image.isLoaded())
+ //           {
+		
                 Analyse::BlobAnalyser blobDetection(&image);
                 blobDetection.proceed();
                 if(blobDetection.getBottleResult(m_dataPort).size()>0)
-                    m_dataPort.write();
+                {
+		    m_dataPort.write(true);
+		}
             
                 cv::imshow("BlobDetection", *blobDetection.getResultMat());
-            }
+  //          }
             
         }
 

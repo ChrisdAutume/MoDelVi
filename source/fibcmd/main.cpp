@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 
-#include <modelvi-version.h>
+//#include <modelvi-version.h>
 #include <modelvilib/FileImage.h>
 #include <modelvilib/ShapesAnalyser.h>
 #include <modelvilib/BlobAnalyser.h>
@@ -21,9 +21,17 @@
 
 int main(int /*argc*/, char* /*argv*/[])
 {
-    std::cout << "Version: " << MODELVI_VERSION << std::endl;  
+//    std::cout << "Version: " << MODELVI_VERSION << std::endl;  
+     std::string path = "/home/icub/Pictures/iCubCamImages/frame";
+    std::cout << "Enter a number between 123 and 2399" << std::endl;
+    std::string number;
+    std::cin >> number;
+
+    std::string fullpath = path + number;
+    fullpath += ".ppm";
     
-    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage("../data/samplePicture/frame145.ppm");
+    //MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"../data/samplePicture/frame147.ppm"};
+    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{fullpath};
     //MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"frame000.ppm"};
     //MoDelVi::Analyse::ShapesAnalyser shapes{file};
     MoDelVi::Analyse::BlobAnalyser blob(file);
@@ -36,8 +44,8 @@ int main(int /*argc*/, char* /*argv*/[])
     cv::createTrackbar("FOV", "Control", &fov, 100);
     cv::createTrackbar("Brightness 0->200", "Control", &bright, 400);
 
-//    while(true)
-//    {
+    while(true)
+    {
         //ODD number is needed for blurr
         while(blurr%2 == 0)
             blurr++;
@@ -51,8 +59,8 @@ int main(int /*argc*/, char* /*argv*/[])
         blob.proceed();
         //cvShowImage("Shapes detection", shapes.getResultIpl());
         cv::imshow("Shapes detection", *blob.getResultMat());
-while(true)
-    {
+//while(true)
+ //   {
         if (cv::waitKey(30) >= 0)
         {
             std::cout<<"Touch pressed by user. Bye :D"<<std::endl;

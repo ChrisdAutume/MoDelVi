@@ -22,7 +22,7 @@ namespace MoDelVi
             std::cout<<"- Setting default parameters value"<<std::endl;
             setAcuity(3);
             setFov(100);
-            setBrightness(0);
+            setBrightness(50);
             setTreshold(150);
             
             std::cout<<"- Setting up YARP network"<<std::endl;
@@ -48,7 +48,7 @@ namespace MoDelVi
             }
             std::cout<<std::endl;
             
-            std::string name = b.get(0).asString();
+            std::string name = b.get(0).asString().c_str();
             int value = b.get(1).asInt();
             
             if(name == "acuity") setAcuity(value);

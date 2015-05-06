@@ -1,21 +1,40 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
-# Generate meta-header
-configure_file(modelvi-version.h.in ${CMAKE_CURRENT_BINARY_DIR}/modelvi-version.h)
+FIND_PACKAGE(YARP REQUIRED)
+FIND_PACKAGE(OpenCV REQUIRED)
 
-# We do NOT want to deploy this header (at least not for binary packages)
-#install(FILES ${CMAKE_CURRENT_BINARY_DIR}/template/template-version.h DESTINATION ${INSTALL_INCLUDE}/template)
-
-# Include directories
-include_directories(
-    ${CMAKE_CURRENT_BINARY_DIR}
+INCLUDE_DIRECTORIES(
+	${PROJECT_SOURCE_DIR}/modelvilib/include
+	${YARP_INCLUDE_DIRS}
+	${OpenCV_INCLUDE_DIRS} 
 )
 
-# Libraries
-set(IDE_FOLDER "")
-add_subdirectory(modelvilib)
+FILE(GLOB folder_source 
+	modelvilib/source/*.cpp
+)
+FILE(GLOB folder_header
+	modelvilib/include/*.h
+)
 
-# Applications
-set(IDE_FOLDER "Applications")
-add_subdirectory(fibcmd)
-add_subdirectory(iCubVision)
+set(libs
+    ${YARP_LIBRARIES} 
+    ${OpenCV_LIBS}
+)
 
+SOURCE_GROUP("Source Files" FILES ${folder_source})
+SOURCE_GROUP("Header Files" FILES ${folder_header})
+
+LINK_DIRECTORIES(
+	${PROJECT_SOURCE_DIR}/modelvilib/build
+)
+
+# Set up modelvi library
+ADD_LIBRARY(modelvilib SHARED ${folder_source} ${folder_header})
+TARGET_LINK_LIBRARIES(modelvilib ${YARP_LIBRARIES} ${OpenCV_LIBS})
+
+
+ADD_EXECUTABLE(iCubVision ${PROJECT_SOURCE_DIR}/iCubVision/main.cpp)
+ADD_EXECUTABLE(fibcmd ${PROJECT_SOURCE_DIR}/fibcmd/main.cpp)
+
+TARGET_LINK_LIBRARIES(iCubVision ${YARP_LIBRARIES} modelvilib)
+TARGET_LINK_LIBRARIES(fibcmd ${YARP_LIBRARIES} modelvilib)

@@ -44,7 +44,7 @@ namespace MoDelVi
             };
             IplImage* m_image;
             IplImage* m_transformImage;
-            state m_state = IMAGE_NOLOADED;
+            state m_state;// = IMAGE_NOLOADED;
             
             int m_fov;
             int m_blurr;
