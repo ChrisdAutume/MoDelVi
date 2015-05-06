@@ -36,8 +36,17 @@ namespace MoDelVi
         }
 
         void CamYarp::onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b) {
-            std::cout<<"["<<m_name<<" camera]";
-            std::cout<<"[IMAGE] receveid should be an image. size: "<<b.width()<<" x "<<b.height()<<std::endl;
+            Acquisition::YarpImage image{&b};
+            image.setBlurr(*m_acuity);
+            image.setBrightness(*m_brightness);
+            image.setFov(*m_fov);
+            
+            if(image.isLoaded())
+                std::cout<<"[CAM] Image loaded"<<std::endl;
+        }
+
+        std::vector<Analyse::AbstractAnalyser*>* CamYarp::getAnalyserPtr() {
+            return &m_analyser;
         }
 
         CamYarp::~CamYarp() {

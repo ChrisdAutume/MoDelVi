@@ -53,6 +53,9 @@ set(api_includes
     ${include_path}/ShapesAnalyser.h
     ${include_path}/YarpManager.h
     ${include_path}/CamYarp.h
+    ${include_path}/YarpImage.h
+    ${include_path}/BlobAnalyser.h
+    ${include_path}/BlobMatch.h
 )
 
 set(sources
@@ -62,6 +65,9 @@ set(sources
     ${source_path}/ShapesAnalyser.cpp
     ${source_path}/YarpManager.cpp
     ${source_path}/CamYarp.cpp
+    ${source_path}/YarpImage.cpp
+    ${source_path}/BlobAnalyser.cpp
+    ${source_path}/BlobMatch.cpp
 )
 
 # Group source files

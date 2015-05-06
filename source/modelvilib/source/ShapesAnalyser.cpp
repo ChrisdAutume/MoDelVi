@@ -41,7 +41,7 @@ namespace MoDelVi
 
         void ShapesAnalyser::filter() {
             
-            cvSmooth(m_attachedImg->getIplImage(), m_attachedImg->getIplImage(), CV_GAUSSIAN,3,3); 
+            //cvSmooth(m_attachedImg->getIplImage(), m_attachedImg->getIplImage(), CV_GAUSSIAN,3,3); 
             m_greyScale = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()), 8, 1); 
             cvCvtColor(m_attachedImg->getIplImage(),m_greyScale,CV_BGR2GRAY);
             cvThreshold(m_greyScale,m_greyScale,m_grayTreshold,255,CV_THRESH_BINARY_INV);

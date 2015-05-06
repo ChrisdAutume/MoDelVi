@@ -15,6 +15,9 @@
 #include <vector>
 #include <string>
 
+#include <modelvilib/YarpImage.h>
+#include "AbstractAnalyser.h"
+
 namespace MoDelVi
 {
     namespace Manager
@@ -24,6 +27,8 @@ namespace MoDelVi
             CamYarp(std::string name, int* acuity, int* fov, int* brightness, int* threshold);
             virtual ~CamYarp();
             virtual void onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b);
+            
+            std::vector<Analyse::AbstractAnalyser*>* getAnalyserPtr();
 
         private:
             std::string m_name;
@@ -36,6 +41,8 @@ namespace MoDelVi
             yarp::os::BufferedPort<yarp::sig::ImageOf<yarp::sig::PixelRgb>> m_inPort;
             yarp::os::BufferedPort<yarp::os::Bottle> m_outPort;
             yarp::os::BufferedPort<yarp::os::Bottle> m_dataPort;
+            
+            std::vector<Analyse::AbstractAnalyser*> m_analyser;
 
         };
     }
