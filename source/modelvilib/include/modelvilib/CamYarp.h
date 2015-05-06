@@ -16,7 +16,8 @@
 #include <string>
 
 #include <modelvilib/YarpImage.h>
-#include "AbstractAnalyser.h"
+#include <modelvilib/AbstractAnalyser.h>
+#include <modelvilib/BlobAnalyser.h>
 
 namespace MoDelVi
 {

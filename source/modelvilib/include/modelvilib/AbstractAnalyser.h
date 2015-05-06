@@ -37,6 +37,7 @@ namespace MoDelVi
             AbstractAnalyser(Acquisition::AbstractImage* img) { m_attachedImg = img;};
             AbstractAnalyser();
             
+            virtual void setNewImage(Acquisition::AbstractImage* img);
             virtual void proceed() =0;
         };
     }

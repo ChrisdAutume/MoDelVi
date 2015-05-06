@@ -23,10 +23,10 @@ int main(int /*argc*/, char* /*argv*/[])
 {
     std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     
-    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"../data/samplePicture/frame145.ppm"};
+    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage("../data/samplePicture/frame145.ppm");
     //MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"frame000.ppm"};
     //MoDelVi::Analyse::ShapesAnalyser shapes{file};
-    MoDelVi::Analyse::BlobAnalyser blob{file};
+    MoDelVi::Analyse::BlobAnalyser blob(file);
     
     int blurr=3,fov=100, bright=200;
     cvNamedWindow("Shapes detection");

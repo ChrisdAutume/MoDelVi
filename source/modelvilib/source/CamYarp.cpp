@@ -33,16 +33,26 @@ namespace MoDelVi
             std::cout<<"    * "<<suffix<<"data"<<std::endl;
             m_dataPort.open(suffix+"data");
             m_dataPort.setStrict();
+            
+            
         }
 
         void CamYarp::onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b) {
-            Acquisition::YarpImage image{&b};
+            Acquisition::YarpImage image(&b);
             image.setBlurr(*m_acuity);
             image.setBrightness(*m_brightness);
             image.setFov(*m_fov);
             
             if(image.isLoaded())
-                std::cout<<"[CAM] Image loaded"<<std::endl;
+            {
+                Analyse::BlobAnalyser blobDetection(&image);
+                blobDetection.proceed();
+                if(blobDetection.getBottleResult(m_dataPort).size()>0)
+                    m_dataPort.write();
+            
+                cv::imshow("BlobDetection", *blobDetection.getResultMat());
+            }
+            
         }
 
         std::vector<Analyse::AbstractAnalyser*>* CamYarp::getAnalyserPtr() {

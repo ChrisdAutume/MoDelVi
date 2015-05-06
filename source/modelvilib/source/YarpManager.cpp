@@ -71,7 +71,7 @@ namespace MoDelVi
             bool running = true;
             while(running)
             {
-                std::this_thread::sleep_for(std::chrono::seconds(1));
+                yarp::os::Time::delay(1);
             }
             return 0;
         }

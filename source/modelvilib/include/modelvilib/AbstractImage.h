@@ -56,6 +56,8 @@ namespace MoDelVi
             AbstractImage();
             IplImage* getIplImage();
             bool isLoaded();
+            
+            
             void setFov(int fov);
             void setBlurr(int blurr);
             void setBrightness(int bright);

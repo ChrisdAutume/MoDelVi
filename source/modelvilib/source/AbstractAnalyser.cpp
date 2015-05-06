@@ -15,5 +15,10 @@ namespace MoDelVi
         :m_attachedImg(NULL)
         {
         }
+
+        void AbstractAnalyser::setNewImage(Acquisition::AbstractImage* img) {
+            m_attachedImg = img;
+        }
+
     }
 }
