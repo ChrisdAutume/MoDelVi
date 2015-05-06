@@ -35,8 +35,9 @@ namespace MoDelVi
             
             for(int i=0; i<keypoint.size(); i++)
             {
+                cv::Point relativePt = m_attachedImg->calcFromRelativePoint(keypoint.at(i).pt);
                 m_match.push_back(new BlobMatch(keypoint.at(i).pt,keypoint.at(i).size,getColor(keypoint.at(i).pt)));
-                std::cout<<"Blob match: x:"<<keypoint.at(i).pt.x<<" y:"<<keypoint.at(i).pt.y<<" Size:"<<keypoint.at(i).size<<" Couleur: "<<getColor(keypoint.at(i).pt)<<std::endl;
+                std::cout<<"Blob match: x:"<<relativePt.x<<" y:"<<relativePt.y<<" Size:"<<keypoint.at(i).size<<" Couleur: "<<getColor(keypoint.at(i).pt)<<std::endl;
             }
             cv::drawKeypoints( imgSource,keypoint, m_matResult, cv::Scalar(0,0,255), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
         }

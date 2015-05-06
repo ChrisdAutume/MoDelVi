@@ -50,6 +50,8 @@ namespace MoDelVi
             int m_blurr;
             int m_brightness;
             
+            cv::Point m_RoiPt;
+            
             void prepareImage();
         public:
             ~AbstractImage();
@@ -61,6 +63,8 @@ namespace MoDelVi
             void setFov(int fov);
             void setBlurr(int blurr);
             void setBrightness(int bright);
+            
+            cv::Point calcFromRelativePoint(cv::Point relativePt);
         };
     }
     

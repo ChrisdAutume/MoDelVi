@@ -14,10 +14,11 @@ namespace MoDelVi
 
         AbstractImage::AbstractImage() : m_fov(100), m_blurr(3), m_brightness(0) {
             m_transformImage = cvCreateImage(cvSize(200, 200), IPL_DEPTH_32F, 1);
+            m_RoiPt.x = 0; m_RoiPt.y=0;
         }
 
         IplImage* AbstractImage::getIplImage() {
-            if(m_fov < 100 ||m_blurr != 3)
+            if(m_fov < 100 ||m_blurr != 3 || m_brightness != 0)
                 return m_transformImage;
             return m_image;
         }
@@ -34,11 +35,11 @@ namespace MoDelVi
                 {
                     int height = (m_image->height/100)*m_fov;
                     int width = (m_image->width/100)*m_fov;
+                    
+                    m_RoiPt.x = (m_image->width - width)/2;
+                    m_RoiPt.y = (m_image->height - height)/2;
 
-                    int x1 = (m_image->width - width)/2;
-                    int y1 = (m_image->height - height)/2;
-
-                    cvSetImageROI(m_image, cvRect(x1,y1,width,height));                 
+                    cvSetImageROI(m_image, cvRect(m_RoiPt.x,m_RoiPt.y,width,height));                 
                 }
                 if(m_transformImage->width>0)
                         cvReleaseImage(&m_transformImage);
@@ -89,5 +90,14 @@ namespace MoDelVi
         AbstractImage::~AbstractImage() {
             cvReleaseImage(&m_image);
         }
+        
+        cv::Point AbstractImage::calcFromRelativePoint(cv::Point relativePt) {
+            cv::Point result;
+            result.x = relativePt.x+m_RoiPt.x;
+            result.y = relativePt.y+m_RoiPt.y;
+            
+            return result;
+        }
+
     }
 }
