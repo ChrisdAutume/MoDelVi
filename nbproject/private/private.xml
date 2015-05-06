@@ -10,14 +10,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/AbstractAnalyser.cpp</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/FileImage.cpp</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/oldSoft/vision4.cpp</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/YarpManager.cpp</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/fibcmd/main.cpp</file>
-            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/CamYarp.cpp</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/iCubVision/CMakeLists.txt</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/CamYarp.cpp</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/ShapesAnalyser.cpp</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/iCubVision/main.cpp</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/include/modelvilib/YarpManager.h</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/AbstractImage.cpp</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/include/modelvilib/CamYarp.h</file>
+            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/include/modelvilib/AbstractAnalyser.h</file>
             <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/CMakeLists.txt</file>
-            <file>file:/Users/chris/Desktop/modelvi-lib/source/modelvilib/source/YarpManager.cpp</file>
         </group>
     </open-files>
 </project-private>

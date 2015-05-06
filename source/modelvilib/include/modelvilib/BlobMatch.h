@@ -26,7 +26,7 @@ namespace MoDelVi
             std::string color;
             
             BlobMatch(cv::Point pt, double size, std::string color);
-            yarp::os::Bottle getYarpBottle();
+            yarp::os::Bottle getYarpBottle(yarp::os::BufferedPort<yarp::os::Bottle>& outport);
         };
     }
     

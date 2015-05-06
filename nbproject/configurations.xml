@@ -44,9 +44,12 @@
             <df name="modelvilib">
               <in>AbstractAnalyser.h</in>
               <in>AbstractImage.h</in>
+              <in>BlobAnalyser.h</in>
+              <in>BlobMatch.h</in>
               <in>CamYarp.h</in>
               <in>FileImage.h</in>
               <in>ShapesAnalyser.h</in>
+              <in>YarpImage.h</in>
               <in>YarpManager.h</in>
               <in>modelvi_api.h</in>
             </df>
@@ -54,9 +57,12 @@
           <df name="source">
             <in>AbstractAnalyser.cpp</in>
             <in>AbstractImage.cpp</in>
+            <in>BlobAnalyser.cpp</in>
+            <in>BlobMatch.cpp</in>
             <in>CamYarp.cpp</in>
             <in>FileImage.cpp</in>
             <in>ShapesAnalyser.cpp</in>
+            <in>YarpImage.cpp</in>
             <in>YarpManager.cpp</in>
           </df>
         </df>
@@ -153,6 +159,21 @@
         <ccTool flags="0">
         </ccTool>
       </item>
+      <item path="source/modelvilib/include/modelvilib/BlobAnalyser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/include/modelvilib/BlobMatch.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/include/modelvilib/YarpImage.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="source/modelvilib/source/AbstractAnalyser.cpp"
             ex="false"
             tool="1"
@@ -184,6 +205,16 @@
             <Elem>_REENTRANT</Elem>
           </preprocessorList>
         </ccTool>
+      </item>
+      <item path="source/modelvilib/source/BlobAnalyser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/source/BlobMatch.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="source/modelvilib/source/CamYarp.cpp"
             ex="false"
@@ -226,6 +257,11 @@
             <Elem>_REENTRANT</Elem>
           </preprocessorList>
         </ccTool>
+      </item>
+      <item path="source/modelvilib/source/YarpImage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="source/modelvilib/source/YarpManager.cpp"
             ex="false"
@@ -298,6 +334,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="source/modelvilib/include/modelvilib/BlobAnalyser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/include/modelvilib/BlobMatch.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="source/modelvilib/include/modelvilib/CamYarp.h"
             ex="false"
             tool="3"
@@ -309,6 +355,11 @@
             flavor2="0">
       </item>
       <item path="source/modelvilib/include/modelvilib/ShapesAnalyser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/include/modelvilib/YarpImage.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -328,6 +379,16 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="source/modelvilib/source/BlobAnalyser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/source/BlobMatch.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="source/modelvilib/source/CamYarp.cpp"
             ex="false"
             tool="1"
@@ -339,6 +400,11 @@
             flavor2="0">
       </item>
       <item path="source/modelvilib/source/ShapesAnalyser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="source/modelvilib/source/YarpImage.cpp"
             ex="false"
             tool="1"
             flavor2="0">

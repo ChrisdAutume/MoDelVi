@@ -12,8 +12,8 @@ namespace MoDelVi
     namespace Analyse
     {
 
-        yarp::os::Bottle BlobMatch::getYarpBottle() {
-            yarp::os::Bottle result;
+        yarp::os::Bottle BlobMatch::getYarpBottle(yarp::os::BufferedPort<yarp::os::Bottle>& outport) {
+            yarp::os::Bottle result = outport.prepare();
             result.clear();
             
             result.addString("colour");

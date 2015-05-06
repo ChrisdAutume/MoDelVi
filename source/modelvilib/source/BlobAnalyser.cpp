@@ -50,10 +50,10 @@ namespace MoDelVi
             return result;
         }
 
-        std::vector<yarp::os::Bottle> BlobAnalyser::getBottleResult() {
+        std::vector<yarp::os::Bottle> BlobAnalyser::getBottleResult(yarp::os::BufferedPort<yarp::os::Bottle>& outport) {
             std::vector<yarp::os::Bottle> result;
             for(int i=0; i<m_match.size(); i++)
-                result.push_back(m_match.at(i)->getYarpBottle());
+                result.push_back(m_match.at(i)->getYarpBottle(outport));
             
             return result;
         }

@@ -35,7 +35,7 @@ namespace MoDelVi
             std::string getColor(cv::Point point);
         public:
             BlobAnalyser(Acquisition::AbstractImage* img);
-            std::vector<yarp::os::Bottle> getBottleResult();
+            std::vector<yarp::os::Bottle> getBottleResult(yarp::os::BufferedPort<yarp::os::Bottle>& outport);
             cv::Mat* getResultMat();
             virtual void proceed();
 
