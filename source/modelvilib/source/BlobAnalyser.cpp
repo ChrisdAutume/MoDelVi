@@ -83,11 +83,12 @@ namespace MoDelVi
             for(unsigned int i=0; i<m_motionMatch.size(); i++)
                 result.push_back(m_motionMatch.at(i)->getYarpBottle(outport));
             
+            m_motionMatch.clear();
+            m_match.clear();
             return result;
         }
 
         void BlobAnalyser::basicMotionDetection() {
-            m_motionMatch.clear();
             for(unsigned int i =0; i<m_lastMatch.size(); i++)
             {
                 BlobMatch *oldObj = m_lastMatch.at(i);
