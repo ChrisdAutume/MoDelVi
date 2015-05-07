@@ -45,13 +45,13 @@ namespace MoDelVi
             IplImage* m_image;
             IplImage* m_transformImage;
             cv::Mat* m_matImage;
+            cv::Mat* m_matTransformImage;
             state m_state;
+            cv::Rect m_roi;
             
             int m_fov;
             int m_blurr;
             int m_brightness;
-            
-            cv::Point m_RoiPt;
             
         public:
             ~AbstractImage();

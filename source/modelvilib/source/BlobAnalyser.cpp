@@ -39,14 +39,15 @@ namespace MoDelVi
             cv::SimpleBlobDetector detector;
             std::vector<cv::KeyPoint> keypoint;
             
-            cv::Mat imgSource (m_attachedImg->getIplImage());
-            
+            //cv::Mat imgSource (m_attachedImg->getIplImage());
+            cv::Mat imgSource = *m_attachedImg->getMatImage();
             
             detector.detect(imgSource, keypoint);
             
             
             for(unsigned int i=0; i<keypoint.size(); i++)
             {
+                
                 cv::Point relativePt = m_attachedImg->calcFromRelativePoint(keypoint.at(i).pt);
                 m_match.push_back(new BlobMatch(relativePt,keypoint.at(i).size,getColor(keypoint.at(i).pt)));
                 //std::cout<<"Blob match: x:"<<relativePt.x<<" y:"<<relativePt.y<<" Size:"<<keypoint.at(i).size<<" Couleur: "<<getColor(keypoint.at(i).pt)<<std::endl;
@@ -60,7 +61,7 @@ namespace MoDelVi
             
             cv::Mat img(m_attachedImg->getIplImage());
             cv::Vec3b bgrPixel = img.at<cv::Vec3b>(point.x,point.y);
-            //std::cout<<"B: "<<(int)bgrPixel[0]<<" G:"<<(int)bgrPixel[1]<<" R:"<<(int)bgrPixel[2]<<std::endl;
+            std::cout<<"B: "<<(int)bgrPixel[0]<<" G:"<<(int)bgrPixel[1]<<" R:"<<(int)bgrPixel[2]<<std::endl;
             return result;
         }
 

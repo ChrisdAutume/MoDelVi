@@ -15,7 +15,8 @@ namespace MoDelVi
         AbstractImage::AbstractImage() : m_fov(100), m_blurr(3), m_brightness(0) {
             m_state = IMAGE_NOLOADED;
             m_transformImage = NULL;
-            m_RoiPt.x = 0; m_RoiPt.y=0;
+            m_matTransformImage = NULL;
+            m_roi.x = 0; m_roi.y = 0;
             m_matImage = NULL;
         }
 
@@ -26,6 +27,8 @@ namespace MoDelVi
         }
 
         cv::Mat* AbstractImage::getMatImage() {
+            if(m_matTransformImage)
+                return m_matTransformImage;
             return m_matImage;
         }
 
@@ -40,14 +43,14 @@ namespace MoDelVi
                 if(m_fov<100)
                 {
                     
-                    int height = (m_image->height/100)*m_fov;
-                    int width = (m_image->width/100)*m_fov;
+                    m_roi.height = (m_image->height/100.0)*m_fov;
+                    m_roi.width = (m_image->width/100.0)*m_fov;
+ 
+                    m_roi.x = (m_image->width - m_roi.width)/2.0;
+                    m_roi.y = (m_image->height - m_roi.height)/2.0;
                     
+                    cvSetImageROI(m_image, cvRect(m_roi.x,m_roi.y,m_roi.width,m_roi.height)); 
                     
-                    m_RoiPt.x = (m_image->width - width)/2;
-                    m_RoiPt.y = (m_image->height - height)/2;
-
-                    cvSetImageROI(m_image, cvRect(m_RoiPt.x,m_RoiPt.y,width,height));                 
                 }
                 if(m_transformImage!= NULL)
                         cvReleaseImage(&m_transformImage);
@@ -62,6 +65,11 @@ namespace MoDelVi
        
                 m_state = IMAGE_LOADED;
                 cvResetImageROI(m_image);
+                
+                if(m_matTransformImage)
+                    delete m_matTransformImage;
+                m_matTransformImage = new cv::Mat(m_transformImage);
+                
             }
              
         }
@@ -101,8 +109,8 @@ namespace MoDelVi
         
         cv::Point AbstractImage::calcFromRelativePoint(cv::Point relativePt) {
             cv::Point result;
-            result.x = relativePt.x+m_RoiPt.x;
-            result.y = relativePt.y+m_RoiPt.y;
+            result.x = relativePt.x+m_roi.x;
+            result.y = relativePt.y+m_roi.y;
             
             return result;
         }
