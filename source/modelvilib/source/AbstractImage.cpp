@@ -16,12 +16,17 @@ namespace MoDelVi
             m_state = IMAGE_NOLOADED;
             m_transformImage = NULL;
             m_RoiPt.x = 0; m_RoiPt.y=0;
+            m_matImage = NULL;
         }
 
         IplImage* AbstractImage::getIplImage() {
             if(m_fov < 100 ||m_blurr != 3 || m_brightness != 0)
                 return m_transformImage;
             return m_image;
+        }
+
+        cv::Mat* AbstractImage::getMatImage() {
+            return m_matImage;
         }
 
         bool AbstractImage::isLoaded() {
@@ -90,6 +95,8 @@ namespace MoDelVi
         AbstractImage::~AbstractImage() {
             cvReleaseImage(&m_image);
             cvReleaseImage(&m_transformImage);
+            m_matImage->release(); 
+            delete m_matImage;
         }
         
         cv::Point AbstractImage::calcFromRelativePoint(cv::Point relativePt) {

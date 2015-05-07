@@ -36,6 +36,8 @@ namespace MoDelVi
             full=suffix+"data";
             m_dataPort.open(full.c_str());
             m_dataPort.setStrict();
+            
+            m_analyser.push_back(new Analyse::BlobAnalyser);
         }
 
         void CamYarp::onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b) {
@@ -46,23 +48,20 @@ namespace MoDelVi
             image.setBrightness(*m_brightness);
             image.setFov(*m_fov);
             image.prepareImage();
+
             
             //outputIplImage(*image.getIplImage());
             
             if(image.isLoaded())
             {
 		
-                Analyse::BlobAnalyser blobDetection(&image);
-                blobDetection.proceed();
-                
-                if(blobDetection.getBottleResult(m_dataPort).size()>0)
+                for(unsigned int i =0; i<m_analyser.size(); i++)
                 {
-                    //std::cout<<"Bottle: "<<(int)blobDetection.getBottleResult(m_dataPort).size()<<std::endl;
-		    //m_dataPort.write(true);
-		}
-                outputMatImage(*blobDetection.getResultMat());
-                yarp::os::Time::delay(0.1); // Delay to send img;
-                
+                    m_analyser.at(i)->proceed(&image);
+                    m_analyser.at(i)->getBottleResult(m_dataPort);
+                }
+
+                outputMatImage(*((Analyse::BlobAnalyser*)m_analyser.at(0))->getResultMat());
             }
             
             

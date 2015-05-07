@@ -21,8 +21,8 @@ namespace MoDelVi
             m_image = cvCreateImage( cvSize(tmp_image->width,  tmp_image->height),tmp_image->depth, 3 );
             cvCvtColor(tmp_image, m_image, CV_RGB2BGR);
             m_image->origin = 0;
-            
             m_state = IMAGE_LOADED;
+            m_matImage = new cv::Mat(m_image);
         }
 
 

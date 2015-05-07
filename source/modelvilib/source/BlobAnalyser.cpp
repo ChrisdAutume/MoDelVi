@@ -21,17 +21,29 @@ namespace MoDelVi
         BlobAnalyser::BlobAnalyser(Acquisition::AbstractImage* img) {
             m_attachedImg = img;
         }
+
+        BlobAnalyser::BlobAnalyser() {
+            m_attachedImg = NULL;
+        }
+
         cv::Mat* BlobAnalyser::getResultMat() {
             return &m_matResult;
+        }
+
+        void BlobAnalyser::proceed(Acquisition::AbstractImage* img) {
+            m_attachedImg = img;
+            proceed();
         }
 
         void BlobAnalyser::proceed() {
             cv::SimpleBlobDetector detector;
             std::vector<cv::KeyPoint> keypoint;
             
-            cv::Mat imgSource(m_attachedImg->getIplImage());
+            cv::Mat imgSource (m_attachedImg->getIplImage());
+            
             
             detector.detect(imgSource, keypoint);
+            
             
             for(unsigned int i=0; i<keypoint.size(); i++)
             {
@@ -40,6 +52,7 @@ namespace MoDelVi
                 //std::cout<<"Blob match: x:"<<relativePt.x<<" y:"<<relativePt.y<<" Size:"<<keypoint.at(i).size<<" Couleur: "<<getColor(keypoint.at(i).pt)<<std::endl;
             }
             cv::drawKeypoints( imgSource,keypoint, m_matResult, cv::Scalar(0,0,255), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+    
         }
 
         std::string BlobAnalyser::getColor(cv::Point point) {
@@ -61,7 +74,7 @@ namespace MoDelVi
 
         BlobAnalyser::~BlobAnalyser() {
             //m_matResult.deallocate();
-            //m_match.clear();
+            m_match.clear();
         }
 
 

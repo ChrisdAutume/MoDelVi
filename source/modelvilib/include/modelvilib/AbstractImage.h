@@ -44,6 +44,7 @@ namespace MoDelVi
             };
             IplImage* m_image;
             IplImage* m_transformImage;
+            cv::Mat* m_matImage;
             state m_state;
             
             int m_fov;
@@ -56,6 +57,8 @@ namespace MoDelVi
             ~AbstractImage();
             AbstractImage();
             IplImage* getIplImage();
+            cv::Mat* getMatImage();
+            
             bool isLoaded();
             
             

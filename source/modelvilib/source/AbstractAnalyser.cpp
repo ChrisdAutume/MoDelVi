@@ -20,5 +20,20 @@ namespace MoDelVi
             m_attachedImg = img;
         }
 
+        AbstractAnalyser::AbstractAnalyser(Acquisition::AbstractImage* img) {
+            m_attachedImg = img;
+        }
+
+        std::vector<yarp::os::Bottle> AbstractAnalyser::getBottleResult(yarp::os::BufferedPort<yarp::os::Bottle>& outport) {
+
+        }
+
+        void AbstractAnalyser::proceed(Acquisition::AbstractImage* img) {
+
+        }
+
+
+
+
     }
 }
