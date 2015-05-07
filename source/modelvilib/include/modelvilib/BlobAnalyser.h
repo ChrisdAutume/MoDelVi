@@ -11,7 +11,8 @@
 #include <modelvilib/AbstractAnalyser.h>
 #include <yarp/os/Bottle.h>
 
-#include "BlobMatch.h"
+#include <modelvilib/BlobMatch.h>
+#include <modelvilib/MotionMatch.h>
 
 
 /*! \namespace MoDelVi
@@ -29,8 +30,12 @@ namespace MoDelVi
         protected:
             cv::Mat m_matResult;
             std::vector<BlobMatch*> m_match;
+            std::vector<BlobMatch*> m_lastMatch;
             
-            std::string getColor(cv::Point point);
+            std::vector<MotionMatch*> m_motionMatch;
+            
+            std::string getColor(cv::Rect roi);
+            void basicMotionDetection();
         public:
             BlobAnalyser(Acquisition::AbstractImage* img);
             BlobAnalyser();
