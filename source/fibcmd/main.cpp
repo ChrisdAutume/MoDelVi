@@ -22,7 +22,7 @@
 int main(int /*argc*/, char* /*argv*/[])
 {
 //    std::cout << "Version: " << MODELVI_VERSION << std::endl;  
-     std::string path = "/home/icub/Pictures/iCubCamImages/frame";
+     std::string path = "../../data/samplePicture/frame";
     std::cout << "Enter a number between 123 and 2399" << std::endl;
     std::string number;
     std::cin >> number;
@@ -55,6 +55,7 @@ int main(int /*argc*/, char* /*argv*/[])
         file->setBlurr(blurr);
         file->setFov(fov);
         file->setBrightness(bright-200);
+        file->prepareImage();
         //shapes.proceed();
         blob.proceed();
         //cvShowImage("Shapes detection", shapes.getResultIpl());

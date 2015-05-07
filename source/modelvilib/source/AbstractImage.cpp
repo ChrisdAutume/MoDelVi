@@ -13,8 +13,8 @@ namespace MoDelVi
     {
 
         AbstractImage::AbstractImage() : m_fov(100), m_blurr(3), m_brightness(0) {
-m_state = IMAGE_NOLOADED;
-            m_transformImage = cvCreateImage(cvSize(200, 200), IPL_DEPTH_32F, 1);
+            m_state = IMAGE_NOLOADED;
+            m_transformImage = NULL;
             m_RoiPt.x = 0; m_RoiPt.y=0;
         }
 
@@ -34,15 +34,17 @@ m_state = IMAGE_NOLOADED;
             {
                 if(m_fov<100)
                 {
+                    
                     int height = (m_image->height/100)*m_fov;
                     int width = (m_image->width/100)*m_fov;
+                    
                     
                     m_RoiPt.x = (m_image->width - width)/2;
                     m_RoiPt.y = (m_image->height - height)/2;
 
                     cvSetImageROI(m_image, cvRect(m_RoiPt.x,m_RoiPt.y,width,height));                 
                 }
-                if(m_transformImage->width>0)
+                if(m_transformImage!= NULL)
                         cvReleaseImage(&m_transformImage);
                 
                 m_transformImage = cvCloneImage(m_image);
@@ -65,7 +67,6 @@ m_state = IMAGE_NOLOADED;
             
             m_blurr = blurr;
             m_state = IMAGE_UPDATE;
-            prepareImage();
         }
 
         void AbstractImage::setFov(int fov) {
@@ -75,7 +76,6 @@ m_state = IMAGE_NOLOADED;
             
             m_fov = fov % 101;
             m_state = IMAGE_UPDATE;
-            prepareImage();
         }
 
         void AbstractImage::setBrightness(int bright) {
@@ -83,13 +83,13 @@ m_state = IMAGE_NOLOADED;
                 return;
             
             m_brightness = bright;
-            m_state = IMAGE_UPDATE;
-            prepareImage();     
+            m_state = IMAGE_UPDATE;     
         }
 
 
         AbstractImage::~AbstractImage() {
             cvReleaseImage(&m_image);
+            cvReleaseImage(&m_transformImage);
         }
         
         cv::Point AbstractImage::calcFromRelativePoint(cv::Point relativePt) {

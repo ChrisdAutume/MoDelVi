@@ -44,7 +44,7 @@ namespace MoDelVi
             };
             IplImage* m_image;
             IplImage* m_transformImage;
-            state m_state;// = IMAGE_NOLOADED;
+            state m_state;
             
             int m_fov;
             int m_blurr;
@@ -52,7 +52,6 @@ namespace MoDelVi
             
             cv::Point m_RoiPt;
             
-            void prepareImage();
         public:
             ~AbstractImage();
             AbstractImage();
@@ -64,6 +63,7 @@ namespace MoDelVi
             void setBlurr(int blurr);
             void setBrightness(int bright);
             
+            void prepareImage();
             cv::Point calcFromRelativePoint(cv::Point relativePt);
         };
     }

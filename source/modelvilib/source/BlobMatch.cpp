@@ -21,7 +21,7 @@ namespace MoDelVi
             result.addDouble(pt.x);
             result.addDouble(pt.y);
             result.addInt(size);
-//		outport.write(true);
+            outport.writeStrict();
             return result;
         }
         BlobMatch::BlobMatch(cv::Point pt, double size, std::string color) {

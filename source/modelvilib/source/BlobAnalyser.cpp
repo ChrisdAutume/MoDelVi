@@ -33,11 +33,11 @@ namespace MoDelVi
             
             detector.detect(imgSource, keypoint);
             
-            for(int i=0; i<keypoint.size(); i++)
+            for(unsigned int i=0; i<keypoint.size(); i++)
             {
                 cv::Point relativePt = m_attachedImg->calcFromRelativePoint(keypoint.at(i).pt);
-                m_match.push_back(new BlobMatch(keypoint.at(i).pt,keypoint.at(i).size,getColor(keypoint.at(i).pt)));
-                std::cout<<"Blob match: x:"<<relativePt.x<<" y:"<<relativePt.y<<" Size:"<<keypoint.at(i).size<<" Couleur: "<<getColor(keypoint.at(i).pt)<<std::endl;
+                m_match.push_back(new BlobMatch(relativePt,keypoint.at(i).size,getColor(keypoint.at(i).pt)));
+                //std::cout<<"Blob match: x:"<<relativePt.x<<" y:"<<relativePt.y<<" Size:"<<keypoint.at(i).size<<" Couleur: "<<getColor(keypoint.at(i).pt)<<std::endl;
             }
             cv::drawKeypoints( imgSource,keypoint, m_matResult, cv::Scalar(0,0,255), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
         }
@@ -47,17 +47,23 @@ namespace MoDelVi
             
             cv::Mat img(m_attachedImg->getIplImage());
             cv::Vec3b bgrPixel = img.at<cv::Vec3b>(point.x,point.y);
-            std::cout<<"B: "<<(int)bgrPixel[0]<<" G:"<<(int)bgrPixel[1]<<" R:"<<(int)bgrPixel[2]<<std::endl;
+            //std::cout<<"B: "<<(int)bgrPixel[0]<<" G:"<<(int)bgrPixel[1]<<" R:"<<(int)bgrPixel[2]<<std::endl;
             return result;
         }
 
         std::vector<yarp::os::Bottle> BlobAnalyser::getBottleResult(yarp::os::BufferedPort<yarp::os::Bottle>& outport) {
             std::vector<yarp::os::Bottle> result;
-            for(int i=0; i<m_match.size(); i++)
+            for(unsigned int i=0; i<m_match.size(); i++)
                 result.push_back(m_match.at(i)->getYarpBottle(outport));
             
             return result;
         }
+
+        BlobAnalyser::~BlobAnalyser() {
+            //m_matResult.deallocate();
+            //m_match.clear();
+        }
+
 
 
 

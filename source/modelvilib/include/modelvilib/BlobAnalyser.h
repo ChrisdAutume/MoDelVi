@@ -27,14 +27,13 @@ namespace MoDelVi
         class MODELVI_API BlobAnalyser: public AbstractAnalyser
         {
         protected:
-            IplImage* m_greyScale;
-            IplImage* m_result;
             cv::Mat m_matResult;
             std::vector<BlobMatch*> m_match;
             
             std::string getColor(cv::Point point);
         public:
             BlobAnalyser(Acquisition::AbstractImage* img);
+            ~BlobAnalyser();
             std::vector<yarp::os::Bottle> getBottleResult(yarp::os::BufferedPort<yarp::os::Bottle>& outport);
             cv::Mat* getResultMat();
             virtual void proceed();

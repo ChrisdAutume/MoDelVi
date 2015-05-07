@@ -39,8 +39,11 @@ namespace MoDelVi
             int *m_brightness;
             int *m_threshold;
             
+            void outputMatImage(cv::Mat &img);
+            void outputIplImage(IplImage &img);
+            
             yarp::os::BufferedPort<yarp::sig::ImageOf<yarp::sig::PixelRgb> > m_inPort;
-            yarp::os::BufferedPort<yarp::os::Bottle> m_outPort;
+            yarp::os::BufferedPort<yarp::sig::ImageOf<yarp::sig::PixelBgr> > m_outPort;
             yarp::os::BufferedPort<yarp::os::Bottle> m_dataPort;
             
             std::vector<Analyse::AbstractAnalyser*> m_analyser;

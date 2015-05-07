@@ -39,21 +39,13 @@ namespace MoDelVi
             m_parameterPort.useCallback(*this);
         }
 
-        void YarpManager::onRead(yarp::os::Bottle& b) {
-            std::cout<<"[BOTTLE] receveid: '"<<b.toString()<<"' size: "<<b.size();
-            if(b.size() != 2)
-            {
-                std::cout<<" INVALID SIZE"<<std::endl;
-                return;
-            }
-            std::cout<<std::endl;
-            
+        void YarpManager::onRead(yarp::os::Bottle& b) {     
             std::string name = b.get(0).asString().c_str();
             int value = b.get(1).asInt();
             
             if(name == "acuity") setAcuity(value);
             else if(name == "fov") setFov(value);
-            else if(name == "brightness") setAcuity(value);
+            else if(name == "brightness") setBrightness(value);
             else if(name == "threshold") setTreshold(value);
             else std::cout<<"Bottle message incorrect"<<std::endl;
         }
