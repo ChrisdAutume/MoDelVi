@@ -48,16 +48,18 @@ namespace MoDelVi
             image.setBrightness(*m_brightness);
             image.setFov(*m_fov);
             image.prepareImage();
-
             
-            //outputIplImage(*image.getIplImage());
+            Acquisition::ColorFilter colorFilter(&image, Acquisition::ColorFilter::RED_LOW);
+            
+            //outputIplImage(*colorFilter.getIplImage());
             
             if(image.isLoaded())
             {
 		
                 for(unsigned int i =0; i<m_analyser.size(); i++)
                 {
-                    m_analyser.at(i)->proceed(&image);
+                    //m_analyser.at(i)->proceed(&image);
+                    m_analyser.at(i)->proceed(&colorFilter);
                     m_analyser.at(i)->getBottleResult(m_dataPort);
                 }
 

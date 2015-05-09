@@ -44,6 +44,7 @@ namespace MoDelVi
             
             //cv::Mat imgSource (m_attachedImg->getIplImage());
             cv::Mat imgSource = *m_attachedImg->getMatImage();
+            cv::bitwise_not(imgSource,imgSource);
             
             detector.detect(imgSource, keypoint);
             
@@ -53,19 +54,17 @@ namespace MoDelVi
                 cv::Point relativePt = m_attachedImg->calcFromRelativePoint(keypoint.at(i).pt);
                 cv::Rect roi(keypoint.at(i).pt.x - (keypoint.at(i).size/4),keypoint.at(i).pt.y + (keypoint.at(i).size/4),(keypoint.at(i).size/2)*std::sqrt(2),(keypoint.at(i).size/2)*std::sqrt(2));
                 //Filter
-                std::string color = getColor(roi);
-                if(color == "red")
-                {
-                    keypoint_filtered.push_back(keypoint.at(i));
-                    m_match.push_back(new BlobMatch(relativePt,keypoint.at(i).size*180,getColor(roi))); 
-                }
+                std::string color = "red";
+                keypoint_filtered.push_back(keypoint.at(i));
+                m_match.push_back(new BlobMatch(relativePt,keypoint.at(i).size*180,color)); 
+               
             }
             // Basic motion detection
             if(m_lastMatch.size()>0)
             {
                 std::vector<BlobMatch*> notNoise = basicMotionDetection();
                 
-                /*
+                /*keypoint.
                 std::cout<<"Not noise:"<<notNoise.size()<<std::endl;
                 for(unsigned int i = 0; i<notNoise.size(); i++)
                 {
@@ -80,7 +79,7 @@ namespace MoDelVi
                 
             }
             
-            cv::drawKeypoints( imgSource,keypoint_filtered, m_matResult, cv::Scalar(0,0,255), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+            cv::drawKeypoints( *(m_attachedImg->getOriginalMatImage()),keypoint, m_matResult, cv::Scalar(0,0,255), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
             
             
             m_lastMatch.clear();
@@ -94,6 +93,10 @@ namespace MoDelVi
             
             int r = (int)avgPixelIntensity[2], g= (int)avgPixelIntensity[1], b = (int)avgPixelIntensity[0];
             
+            cv::Mat img(m_attachedImg->getIplImage());
+            cv::Vec3b bgrPixel = img.at<cv::Vec3b>(roi.x + (roi.width/2.0),roi.y - (roi.height/2.0) );
+            std::cout<<"B: "<<(int)bgrPixel[0]<<" G:"<<(int)bgrPixel[1]<<" R:"<<(int)bgrPixel[2]<<std::endl;
+            std::cout<<"vs B: "<<(int)b<<" G:"<<(int)g<<" R:"<<(int)r<<std::endl;
             if(r > 200 && g > 200  && r > 200) result = "white";
             else if(r > (b + 50) && r > (g+50)  && r > 100) result = "red";
             else if(g>200 && b<100 && r<100) result = "green";
@@ -132,6 +135,7 @@ namespace MoDelVi
                     notNoise.push_back(newObj);
                     //No motion
                     if(distance == 0) continue;
+                    if(distance <= 1) continue;
                     m_motionMatch.push_back(new MotionMatch(oldObj->pt, newObj->pt, 0));
                 }
             }

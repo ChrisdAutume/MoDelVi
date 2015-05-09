@@ -25,6 +25,14 @@ namespace MoDelVi
                 return m_transformImage;
             return m_image;
         }
+        IplImage* AbstractImage::getOriginalIplImage() {
+            return m_image;
+        }
+        cv::Mat* AbstractImage::getOriginalMatImage() {
+            return m_matImage;
+        }
+
+
 
         cv::Mat* AbstractImage::getMatImage() {
             if(m_matTransformImage)

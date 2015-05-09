@@ -18,6 +18,7 @@
 #include <modelvilib/YarpImage.h>
 #include <modelvilib/AbstractAnalyser.h>
 #include <modelvilib/BlobAnalyser.h>
+#include <modelvilib/ColorFilter.h>
 
 namespace MoDelVi
 {

@@ -56,8 +56,10 @@ namespace MoDelVi
         public:
             ~AbstractImage();
             AbstractImage();
-            IplImage* getIplImage();
-            cv::Mat* getMatImage();
+            virtual IplImage* getIplImage();
+            virtual cv::Mat* getMatImage();
+            virtual cv::Mat* getOriginalMatImage();
+            virtual IplImage* getOriginalIplImage();
             
             bool isLoaded();
             

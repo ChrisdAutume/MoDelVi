@@ -12,15 +12,17 @@ namespace MoDelVi
     namespace Analyse
     {
 
-        ShapesAnalyser::ShapesAnalyser(): AbstractAnalyser() {
+        ShapesAnalyser::ShapesAnalyser(): AbstractAnalyser()
+        {
+            m_grayTreshold = 150;
+            m_result = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()),IPL_DEPTH_8U, 3);
+            cvZero(m_result);
+            m_greyScale = NULL;
         }
         ShapesAnalyser::ShapesAnalyser(Acquisition::AbstractImage* img)
         :AbstractAnalyser(img),
         m_grayTreshold(150)
-        {
-            if(m_attachedImg->isLoaded())
-                std::cout<<"Img loaded by shapes class"<<std::endl;
-            
+        {            
             // Create result IMG
             m_result = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()),IPL_DEPTH_8U, 3);
             cvZero(m_result);
@@ -33,9 +35,9 @@ namespace MoDelVi
             if(m_greyScale)
                 cvReleaseImage(&m_greyScale);
             m_result = cvCloneImage(m_attachedImg->getIplImage());
-            filter();
+            //filter();
             //findShapes();
-            findShapesUsingCanny();
+            //findShapesUsingCanny();
             //m_result = m_greyScale;
         }
 
@@ -101,5 +103,11 @@ namespace MoDelVi
                 
             }
         }
+
+        void ShapesAnalyser::proceed(Acquisition::AbstractImage* img) {
+            m_attachedImg = img;
+            proceed();
+        }
+
     }
 }

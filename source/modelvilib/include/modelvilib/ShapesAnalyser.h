@@ -44,6 +44,8 @@ namespace MoDelVi
             IplImage* getResultIpl() { return m_result;};
             int* getGrayTreshold() { return &m_grayTreshold; };
             virtual void proceed();
+            virtual void proceed(Acquisition::AbstractImage* img);
+
 
         };
     }
