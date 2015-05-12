@@ -24,7 +24,7 @@ namespace MoDelVi
         m_grayTreshold(150)
         {            
             // Create result IMG
-            m_result = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()),IPL_DEPTH_8U, 3);
+            m_result = cvCreateImage(cvGetSize(m_attachedImg->getOriginalIplImage()),IPL_DEPTH_8U, 3);
             cvZero(m_result);
             m_greyScale = NULL;
         }
@@ -35,9 +35,10 @@ namespace MoDelVi
             if(m_greyScale)
                 cvReleaseImage(&m_greyScale);
             m_result = cvCloneImage(m_attachedImg->getIplImage());
+            m_greyScale = m_attachedImg->getIplImage();
             //filter();
             //findShapes();
-            //findShapesUsingCanny();
+            findShapesUsingCanny();
             //m_result = m_greyScale;
         }
 
@@ -61,7 +62,7 @@ namespace MoDelVi
             
             cv::RNG rng(12345);
             cv::findContours(grey, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0,0));
-            cv::Mat draw = cv::Mat::zeros(grey.size(), CV_8UC3);
+            cv::Mat draw = *m_attachedImg->getOriginalMatImage();
             
             for( int i = 0; i< (int)contours.size(); i++ )
             {
@@ -86,7 +87,7 @@ namespace MoDelVi
                 result = cvApproxPoly(contour, sizeof(CvContour), storage, CV_POLY_APPROX_DP, cvContourPerimeter(contour)*0.02, 0);
                 
                 if(result->total==4 )
-{
+                {
                     //iterating through each point
                     CvPoint *pt[4];
                     for(int i=0;i<4;i++){

@@ -50,7 +50,6 @@ namespace MoDelVi
             image.prepareImage();
             
             Acquisition::ColorFilter colorFilter(&image, Acquisition::ColorFilter::RED_LOW);
-            
             //outputIplImage(*colorFilter.getIplImage());
             
             if(image.isLoaded())

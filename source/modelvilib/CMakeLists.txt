@@ -45,29 +45,11 @@ endif()
 set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
-set(api_includes
-    ${include_path}/modelvi_api.h
-    ${include_path}/AbstractImage.h
-    ${include_path}/AbstractAnalyser.h
-    ${include_path}/FileImage.h
-    ${include_path}/ShapesAnalyser.h
-    ${include_path}/YarpManager.h
-    ${include_path}/CamYarp.h
-    ${include_path}/YarpImage.h
-    ${include_path}/BlobAnalyser.h
-    ${include_path}/BlobMatch.h
+FILE(GLOB sources
+	${source_path}/*.cpp
 )
-
-set(sources
-    ${source_path}/AbstractImage.cpp
-    ${source_path}/FileImage.cpp
-    ${source_path}/AbstractAnalyser.cpp
-    ${source_path}/ShapesAnalyser.cpp
-    ${source_path}/YarpManager.cpp
-    ${source_path}/CamYarp.cpp
-    ${source_path}/YarpImage.cpp
-    ${source_path}/BlobAnalyser.cpp
-    ${source_path}/BlobMatch.cpp
+FILE(GLOB api_includes
+	${include_path}/*.h
 )
 
 # Group source files

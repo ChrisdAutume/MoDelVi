@@ -33,7 +33,6 @@ namespace MoDelVi
             m_hsvImg = cvCreateImage(cvGetSize(m_image), 8, 3);
             cvCvtColor(m_image, m_hsvImg, CV_BGR2HSV);
             m_transformImage = cvCreateImage(cvGetSize(m_image), 8, 1);
-            
             switch(m_colorFilter)
             {
                 case RED_LOW:
@@ -62,7 +61,7 @@ namespace MoDelVi
                     lowLevel.push_back(0);
                     lowLevel.push_back(0);
                     lowLevel.push_back(0);
-            }
+            };
             cvInRangeS(m_hsvImg, cvScalar(hightLevel.at(0), hightLevel.at(1), hightLevel.at(2)), cvScalar(lowLevel.at(0), lowLevel.at(1), lowLevel.at(2)), m_transformImage);
             
             cvErode(m_transformImage,m_transformImage,NULL,3);

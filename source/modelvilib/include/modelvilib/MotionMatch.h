@@ -19,7 +19,7 @@ namespace MoDelVi
     namespace Analyse
     {
 
-        class MotionMatch
+        class MODELVI_API MotionMatch
         {
         public:
             cv::Point oldPt;

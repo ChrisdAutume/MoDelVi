@@ -24,7 +24,7 @@ namespace MoDelVi
 {
     namespace Manager
     {
-        class CamYarp : public yarp::os::TypedReaderCallback<yarp::sig::ImageOf<yarp::sig::PixelRgb> > {
+        class MODELVI_API CamYarp : public yarp::os::TypedReaderCallback<yarp::sig::ImageOf<yarp::sig::PixelRgb> > {
         public:
             CamYarp(std::string name, int* acuity, int* fov, int* brightness, int* threshold);
             virtual ~CamYarp();
