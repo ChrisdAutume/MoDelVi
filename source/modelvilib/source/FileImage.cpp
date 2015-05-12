@@ -30,7 +30,7 @@ namespace MoDelVi
         }
        void FileImage::loadFile() {
             m_image = cvLoadImage(m_filename.c_str());
-            
+            m_matImage = new cv::Mat(m_image);
             if(m_image && m_image->imageSize>0)
                 m_state = IMAGE_LOADED;          
         }

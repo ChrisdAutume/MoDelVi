@@ -35,7 +35,7 @@ namespace MoDelVi
             std::vector<MotionMatch*> m_motionMatch;
             
             std::string getColor(cv::Rect roi);
-            void basicMotionDetection();
+            std::vector<BlobMatch*> basicMotionDetection();
         public:
             BlobAnalyser(Acquisition::AbstractImage* img);
             BlobAnalyser();
@@ -44,6 +44,7 @@ namespace MoDelVi
             cv::Mat* getResultMat();
             virtual void proceed();
             virtual void proceed(Acquisition::AbstractImage* img);
+            
 
         };
     }

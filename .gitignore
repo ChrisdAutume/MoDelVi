@@ -41,3 +41,7 @@ _start-cmd.bat
 
 # Local config unix
 .localconfig
+
+*.ppm
+
+nbproject/private/private.xml
