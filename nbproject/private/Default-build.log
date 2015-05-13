@@ -1,4 +1,0 @@
-/bin/sh: 1: cd: can't cd to /aber/ced13/Desktop/MoDelVi/build
-make[2]: *** [source/modelvilib/CMakeFiles/modelvilib.dir/depend] Error 2
-make[1]: *** [source/modelvilib/CMakeFiles/modelvilib.dir/all] Error 2
-make: *** [all] Error 2
