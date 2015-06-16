@@ -12,8 +12,8 @@ namespace MoDelVi
     namespace Analyse
     {
 
-        yarp::os::Bottle MotionMatch::getYarpBottle(yarp::os::BufferedPort<yarp::os::Bottle>& outport) {
-            yarp::os::Bottle& result = outport.prepare();
+        yarp::os::Bottle MotionMatch::getYarpBottle(Yarp::YarpPort& outport) {
+            yarp::os::Bottle& result = outport.getBottle();
             result.clear();
             
             result.addString("motion");
@@ -22,7 +22,7 @@ namespace MoDelVi
             result.addDouble(oldPt.y);
             result.addDouble(newPt.x);
             result.addDouble(newPt.y);
-            outport.writeStrict();
+            outport.write();
             return result;
         }
 

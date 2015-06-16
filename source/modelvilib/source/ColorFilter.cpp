@@ -13,10 +13,6 @@ namespace MoDelVi
 
         ColorFilter::ColorFilter(AbstractImage* image, m_color color) {
             
-            // Define color
-            // RED
-            //m_colorValue.push_back((int)RED_LOW, std::vector<int>());
-            
             m_colorFilter = color;
             m_linkedImg = image;
             
@@ -27,8 +23,8 @@ namespace MoDelVi
         }
 
         void ColorFilter::filter() {
-            std::vector<int> hightLevel;
-            std::vector<int> lowLevel;
+            std::vector<int> hLevel;
+            std::vector<int> lLevel;
             
             m_hsvImg = cvCreateImage(cvGetSize(m_image), 8, 3);
             cvCvtColor(m_image, m_hsvImg, CV_BGR2HSV);
@@ -36,44 +32,84 @@ namespace MoDelVi
             switch(m_colorFilter)
             {
                 case RED_LOW:
-                    hightLevel.push_back(0); // Half of HUE
-                    hightLevel.push_back(120); // x2 + 25 of S
-                    hightLevel.push_back(110); // x2 + 25 of V
+                    lLevel.push_back(0); // Half of HUE
+                    lLevel.push_back(120); // x2 + 25 of S
+                    lLevel.push_back(110); // x2 + 25 of V
                     
-                    lowLevel.push_back(7);
-                    lowLevel.push_back(225);
-                    lowLevel.push_back(225);
+                    hLevel.push_back(7);
+                    hLevel.push_back(225);
+                    hLevel.push_back(225);
                     break;
                 case GREEN:
-                    lowLevel.push_back(73);
-                    lowLevel.push_back(225);
-                    lowLevel.push_back(225);
+                    lLevel.push_back(73);
+                    lLevel.push_back(225);
+                    lLevel.push_back(225);
                     
-                    hightLevel.push_back(44);
-                    hightLevel.push_back(75);
-                    hightLevel.push_back(90);
+                    hLevel.push_back(44);
+                    hLevel.push_back(75);
+                    hLevel.push_back(90);
                     break;
                 default:
-                    hightLevel.push_back(0);
-                    hightLevel.push_back(0);
-                    hightLevel.push_back(0);
+                    hLevel.push_back(0);
+                    hLevel.push_back(0);
+                    hLevel.push_back(0);
                     
-                    lowLevel.push_back(0);
-                    lowLevel.push_back(0);
-                    lowLevel.push_back(0);
+                    lLevel.push_back(0);
+                    lLevel.push_back(0);
+                    lLevel.push_back(0);
             };
-            cvInRangeS(m_hsvImg, cvScalar(hightLevel.at(0), hightLevel.at(1), hightLevel.at(2)), cvScalar(lowLevel.at(0), lowLevel.at(1), lowLevel.at(2)), m_transformImage);
+            cvInRangeS(m_hsvImg, cvScalar(lLevel.at(0), lLevel.at(1), lLevel.at(2)), cvScalar(hLevel.at(0), hLevel.at(1), hLevel.at(2)), m_transformImage);
             
             cvErode(m_transformImage,m_transformImage,NULL,3);
-            cvDilate(m_transformImage,m_transformImage,NULL,3);
- 
-            //cv::bitwise_not(m_hsvImg,m_hsvImg);
+            cvDilate(m_transformImage,m_transformImage,NULL,6);
+
             //Conv to Matrice
             m_matTransformImage = new cv::Mat(m_transformImage);
         }
-
+        std::string ColorFilter::getColor()
+        {
+            std::string result;
+            switch (m_colorFilter) {
+                case RED_HIGHT:
+                case RED_LOW:
+                    result = "red";
+                    break;
+                case BLUE:
+                    result = "blue";
+                    break;
+                case YELLOW:
+                    result = "yellow";
+                    break;
+                case GREEN:
+                    result = "green";
+                    break;
+                    
+                default:
+                    result = "any";
+            }
+            return result;
+        }
+        
+        cv::Scalar ColorFilter::getBorderColor()
+        {
+            switch (m_colorFilter) {
+                case RED_HIGHT:
+                case RED_LOW:
+                    return cv::Scalar(0,0,255); break;
+                case BLUE:
+                    return cv::Scalar(255,0,0); break;
+                case YELLOW:
+                    return cv::Scalar(0,255,255); break;
+                case GREEN:
+                    return cv::Scalar(0,255,0); break;
+                    
+                default:
+                    return cv::Scalar(0,0,0);
+            }
+        }
         ColorFilter::~ColorFilter() {
             cvReleaseImage(&m_hsvImg);
+            cvReleaseImage(&m_transformImage);
         }
 
         IplImage* ColorFilter::getIplImage() {

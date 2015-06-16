@@ -10,6 +10,7 @@
 
 #include <modelvilib/modelvi_api.h>
 #include <modelvilib/AbstractImage.h>
+#include <modelvilib/YarpPort.h>
 #include <opencv2/opencv.hpp>
 #include <yarp/os/all.h>
 #include <iostream>
@@ -25,10 +26,8 @@ namespace MoDelVi
     */
     namespace Analyse
     {
-        /*! \class AbstractAnalyser
-        * \brief Abstract class to define basic Analyser
-        *
-        *  Abstract class to store image data.
+        /*! @class AbstractAnalyser
+        * @brief Abstract class to define basic Analyser
         */
         class MODELVI_API AbstractAnalyser
         {
@@ -38,10 +37,15 @@ namespace MoDelVi
             AbstractAnalyser(Acquisition::AbstractImage* img);
             AbstractAnalyser();
             
+            /*!
+             Set a new image in the analyser
+             @param img New image pointer.
+             */
             virtual void setNewImage(Acquisition::AbstractImage* img);
+            
             virtual void proceed() =0;
             virtual void proceed(Acquisition::AbstractImage* img);
-            virtual std::vector<yarp::os::Bottle> getBottleResult(yarp::os::BufferedPort<yarp::os::Bottle>& outport);
+            virtual std::vector<yarp::os::Bottle> getBottleResult(Yarp::YarpPort& outport);
         };
     }
     

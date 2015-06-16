@@ -15,8 +15,8 @@ namespace MoDelVi
         ShapesAnalyser::ShapesAnalyser(): AbstractAnalyser()
         {
             m_grayTreshold = 150;
-            m_result = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()),IPL_DEPTH_8U, 3);
-            cvZero(m_result);
+            //m_result = cvCreateImage(cvGetSize(m_attachedImg->getIplImage()),IPL_DEPTH_8U, 3);
+            //cvZero(m_result);
             m_greyScale = NULL;
         }
         ShapesAnalyser::ShapesAnalyser(Acquisition::AbstractImage* img)
@@ -24,21 +24,24 @@ namespace MoDelVi
         m_grayTreshold(150)
         {            
             // Create result IMG
-            m_result = cvCreateImage(cvGetSize(m_attachedImg->getOriginalIplImage()),IPL_DEPTH_8U, 3);
-            cvZero(m_result);
+            //m_result = cvCreateImage(cvGetSize(m_attachedImg->getOriginalIplImage()),IPL_DEPTH_8U, 3);
+            //cvZero(m_result);
             m_greyScale = NULL;
         }
 
         void ShapesAnalyser::proceed() {
             
-            cvReleaseImage(&m_result);
+            
+            //cvReleaseImage(&m_result);
             if(m_greyScale)
                 cvReleaseImage(&m_greyScale);
-            m_result = cvCloneImage(m_attachedImg->getIplImage());
+            //m_result = cvCloneImage(m_attachedImg->getIplImage());
+            
             m_greyScale = m_attachedImg->getIplImage();
+            
             //filter();
-            //findShapes();
-            findShapesUsingCanny();
+            findShapes();
+            //findShapesUsingCanny();
             //m_result = m_greyScale;
         }
 
@@ -51,9 +54,7 @@ namespace MoDelVi
         }
 
         void ShapesAnalyser::findShapesUsingCanny() {
-            cv::Mat grey(m_greyScale);
-            cv::Mat greyT(m_greyScale);
-            cv::imshow( "Grey img", greyT );
+            cv::Mat grey = *m_attachedImg->getMatImage();
             cv::Canny(grey,grey, 100, 200, 3);
             
             //Find contour
@@ -62,14 +63,26 @@ namespace MoDelVi
             
             cv::RNG rng(12345);
             cv::findContours(grey, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0,0));
+            
             cv::Mat draw = *m_attachedImg->getOriginalMatImage();
             
+            int nbPts = 4;
             for( int i = 0; i< (int)contours.size(); i++ )
             {
-               cv::Scalar color = cv::Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-               cv::drawContours( draw, contours, i, color, 2, 8, hierarchy, 0, cv::Point() );
+                std::cout<<"Contours n°"<<i<<" nb:"<<contours[i].size()<<std::endl;
+               //cv::Scalar color = cv::Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
+               //cv::drawContours( draw, contours, i, color, 2, 8, hierarchy, 0, cv::Point() );
+                for(int j = 0; j < nbPts; j++)
+                {
+                    int idPt = (contours.at(i).size()/(float)nbPts)*j;
+                    std::cout<<"Pt n°"<<idPt<<std::endl;
+                    cv::Point Pt = contours.at(i).at(idPt);
+                    cv::circle(draw, Pt, 5, cvScalar(0,255,0));
+                }
             }
+            
             cv::imshow( "Canny edge detection", draw );
+             
         }
         
 
@@ -78,6 +91,8 @@ namespace MoDelVi
             CvSeq* result;
             CvMemStorage *storage = cvCreateMemStorage(0);
             
+            cv::Mat draw = *m_attachedImg->getOriginalMatImage();
+            
             //finding all contours in the image
             cvFindContours(m_greyScale, storage, &contour, sizeof(CvContour), CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE, cvPoint(0,0));
             
@@ -85,13 +100,15 @@ namespace MoDelVi
             {
                 //obtain a sequence of point
                 result = cvApproxPoly(contour, sizeof(CvContour), storage, CV_POLY_APPROX_DP, cvContourPerimeter(contour)*0.02, 0);
-                
-                if(result->total==4 )
+                std::cout<<"Contours  nb:"<<result->total<<std::endl;
+                if(result->total>=4 )
                 {
                     //iterating through each point
                     CvPoint *pt[4];
                     for(int i=0;i<4;i++){
-                    pt[i] = (CvPoint*)cvGetSeqElem(result, i);
+                        pt[i] = (CvPoint*)cvGetSeqElem(result, i);
+                        cv::circle(draw, cv::Point(pt[i]->x,pt[i]->y), 10, cvScalar(0,255,0));
+                        std::cout<<"Pt x:"<<pt[i]->x<<" y:"<<pt[i]->y<<std::endl;
                     }
 
                     //drawing lines around the quadrilateral
@@ -99,10 +116,13 @@ namespace MoDelVi
                     cvLine(m_result, *pt[1], *pt[2], cvScalar(0,255,0),4);
                     cvLine(m_result, *pt[2], *pt[3], cvScalar(0,255,0),4);
                     cvLine(m_result, *pt[3], *pt[0], cvScalar(0,255,0),4);
+                    
+                    
                 }
                  contour = contour->h_next; 
                 
             }
+            cv::imshow( "Point shapes", draw );
         }
 
         void ShapesAnalyser::proceed(Acquisition::AbstractImage* img) {

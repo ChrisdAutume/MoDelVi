@@ -3,7 +3,6 @@
 #include <fstream>
 #include <string>
 
-//#include <modelvi-version.h>
 #include <modelvilib/FileImage.h>
 #include <modelvilib/ShapesAnalyser.h>
 #include <modelvilib/BlobAnalyser.h>
@@ -25,7 +24,7 @@ int main(int /*argc*/, char* /*argv*/[])
 {
 //    std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     
-    std::string path = "/Users/chris/Downloads/modelvi-lib/data/sampleColor/frame";
+    std::string path = "/Users/chris/Desktop/modelvi-lib/data/sampleExpRight/frame";
     
     /*std::cout << "Enter a number between 000 and 377" << std::endl;
     std::string number;
@@ -35,7 +34,7 @@ int main(int /*argc*/, char* /*argv*/[])
     std::string fullpath = "";
     fullpath += ".ppm"; 
     
-    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage("/Users/chris/Downloads/modelvi-lib/data/samplePicture/frame147.ppm");
+    MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage("/Users/chris/Desktop/modelvi-lib/data/sampleExpRight/frameOOO.ppm");
     //MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{fullpath};
     //MoDelVi::Acquisition::FileImage* file= new MoDelVi::Acquisition::FileImage{"frame000.ppm"};
 
@@ -54,7 +53,7 @@ int main(int /*argc*/, char* /*argv*/[])
     while(true)
     {
         compteur++;
-        if(compteur>313) compteur=0;
+        if(compteur>1800) compteur=0;
         delete file;
         std::ostringstream s;
         if(compteur>= 0 && compteur < 10) s << "00";
@@ -75,18 +74,16 @@ int main(int /*argc*/, char* /*argv*/[])
         file->prepareImage();
         
         MoDelVi::Acquisition::ColorFilter *color = new MoDelVi::Acquisition::ColorFilter(file, MoDelVi::Acquisition::ColorFilter::RED_LOW);
-        cv::imshow("Color", *color->getMatImage());
+        //cv::imshow("Color", *color->getMatImage());
         MoDelVi::Analyse::ShapesAnalyser shapes(color);
         shapes.proceed(color);
-        //blob.proceed(color);
-        cvShowImage("Shapes detection", shapes.getResultIpl());
+        //blob.proceed(file);
+        //cvShowImage("Shapes detection", shapes.getResultIpl());
         //cv::imshow("Blob detection", *blob.getResultMat());
         
         delete color;
-//while(true)
- //   {
  
-        if (cv::waitKey(40) >= 0)
+        if (cv::waitKey(1000) >= 0) // default 40
         {
             std::cout<<"Touch pressed by user. Bye :D"<<std::endl;
             break;

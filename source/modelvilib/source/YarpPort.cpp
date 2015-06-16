@@ -14,37 +14,56 @@ namespace MoDelVi {
         YarpPort::YarpPort(std::string portName)
         {
             m_portName = portName;
-            std::string address = "/target/"+m_portName;
+            std::string address = YarpPort::getSuffix()+m_portName;
             
-            std::cout<<"- Opening YARP port"<<std::endl;
+            std::cout<<"[YARP] Opening a new port"<<std::endl;
             std::cout<<"    * "<<address<<std::endl;
             m_port.open(address.c_str());
             m_port.setStrict();
             m_port.useCallback(*this);
         }
-        void YarpPort::attachNewParameter(std::string parameterName, ModelVi::Yarp::IParameter* callback)
+        yarp::os::Bottle& YarpPort::getBottle()
         {
-            if(m_parameterCallback.find(parameterName) == m_parameterCallback.end())
-            {
-                std::cout << "[YARP][port: "<<m_portName<<"]"<<"Parameter name already used ("<<parameterName<<")"<<std::endl;
-            }
+            return m_port.prepare();
+        }
+        void YarpPort::write()
+        {
+            m_port.writeStrict();
+        }
+        void YarpPort::attachNewParameter(std::string parameterName, IParameter* callback)
+        {
             m_parameterCallback[parameterName] = callback;
-            std::cout << "[YARP][port: "<<m_portName<<"]"<<" new parameter declared ("<<parameterName<<")"<<std::endl;
+            std::cout << "[YARP][port: "<<m_portName<<"]"<<" new parameter listener ("<<parameterName<<")"<<std::endl;
         }
         void YarpPort::onRead(yarp::os::Bottle& b)
         {
+            
             std::string name = b.get(0).asString().c_str();
-            if(m_parameterCallback.find(name) == m_parameterCallback.end())
-               {
-                   std::cout << "[YARP][port: "<<m_portName<<"]"<<"No parameter match ("<<name<<")"<<std::endl;
-                   return;
-               }
-            (*m_parameterCallback[name]).onBottle(name, b);
+            if(m_parameterCallback.find(name) != m_parameterCallback.end())
+                (*m_parameterCallback[name]).onBottle(m_portName, b);
+            
+            // Send to all listeners
+            for(unsigned int i =0; i<m_listeners.size();i++)
+                (m_listeners.at(i))->onBottle(m_portName, b);
         }
         
-        void YarpPort::detachParameterFrom(ModelVi::Yarp::IParameter *callback)
+        void YarpPort::attachListener(IParameter *callback)
         {
-            std::map<std::string, ModelVi::Yarp::IParameter*>::iterator parameter;
+            m_listeners.push_back(callback);
+            std::cout << "[YARP][port: "<<m_portName<<"]"<<" Listener attached"<<std::endl;
+        }
+        void YarpPort::detachListener(IParameter *callback)
+        {
+            for( std::vector<IParameter*>::iterator it = m_listeners.begin(); it!=m_listeners.end(); it++)
+            {
+                if ((*it) == callback)
+                    m_listeners.erase(it);
+            }
+            std::cout << "[YARP][port: "<<m_portName<<"]"<<" Listener detached"<<std::endl;
+        }
+        void YarpPort::detachParameterFrom(IParameter *callback)
+        {
+            std::map<std::string, IParameter*>::iterator parameter;
             for(parameter=m_parameterCallback.begin(); parameter != m_parameterCallback.end(); parameter++ )
             {
                 if((*parameter).second != callback)
@@ -53,6 +72,17 @@ namespace MoDelVi {
                 m_parameterCallback.erase(parameter);
                 std::cout << "[YARP][port: "<<m_portName<<"]"<<"Parameter as been erased ("<<(*parameter).first<<")"<<std::endl;
             }
+        }
+        
+        std::string YarpPort::m_suffix = "/target/";
+        std::string YarpPort::getSuffix()
+        {
+            return YarpPort::m_suffix;
+        }
+        
+        void YarpPort::setSuffix(std::string suffix)
+        {
+            YarpPort::m_suffix = suffix;
         }
     }
 }

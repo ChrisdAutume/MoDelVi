@@ -7,6 +7,7 @@
 
 #include <modelvilib/AbstractImage.h>
 
+
 namespace MoDelVi
 {
     namespace Acquisition
@@ -18,6 +19,8 @@ namespace MoDelVi
             m_matTransformImage = NULL;
             m_roi.x = 0; m_roi.y = 0;
             m_matImage = NULL;
+            
+            m_created = time(NULL);
         }
 
         IplImage* AbstractImage::getIplImage() {
@@ -111,8 +114,7 @@ namespace MoDelVi
         AbstractImage::~AbstractImage() {
             cvReleaseImage(&m_image);
             cvReleaseImage(&m_transformImage);
-            m_matImage->release(); 
-            delete m_matImage;
+            m_matImage->release();
         }
         
         cv::Point AbstractImage::calcFromRelativePoint(cv::Point relativePt) {

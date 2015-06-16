@@ -17,11 +17,6 @@ namespace MoDelVi
 
     namespace Analyse
     {
-
-        BlobAnalyser::BlobAnalyser(Acquisition::AbstractImage* img) {
-            m_attachedImg = img;
-        }
-
         BlobAnalyser::BlobAnalyser() {
             m_attachedImg = NULL;
         }
@@ -37,75 +32,54 @@ namespace MoDelVi
 
         void BlobAnalyser::proceed() {
             m_match.clear();
+            m_attachedImg->getMatImage()->copyTo(m_matResult);
+            
+            Acquisition::ColorFilter* filteredImg = dynamic_cast<Acquisition::ColorFilter*>(m_attachedImg);
+            if(filteredImg) detectBlob(filteredImg);
+            else proceedOnAllColor();
+            
+            // Basic motion detection
+            if(m_lastMatch.size()>0)
+                basicMotionDetection();
+            
+            
+            m_lastMatch.clear();
+            m_lastMatch = m_match;
+        }
+        
+        void BlobAnalyser::proceedOnAllColor()
+        {
+            Acquisition::ColorFilter* filteredImage = NULL;
+            for(int c = (int)Acquisition::ColorFilter::RED_LOW; c<=(int)Acquisition::ColorFilter::YELLOW; c++)
+            {
+                filteredImage = new Acquisition::ColorFilter(m_attachedImg, (Acquisition::ColorFilter::m_color)c);
+                detectBlob(filteredImage);
+                delete filteredImage;
+            }
+                
+        }
+        
+        void BlobAnalyser::detectBlob(Acquisition::ColorFilter* image)
+        {
             cv::SimpleBlobDetector detector;
             std::vector<cv::KeyPoint> keypoint;
-            std::vector<cv::KeyPoint> keypoint_filtered;
-            std::vector<cv::KeyPoint> keypoint_withoutNoise;
             
-            //cv::Mat imgSource (m_attachedImg->getIplImage());
-            cv::Mat imgSource = *m_attachedImg->getMatImage();
+            cv::Mat imgSource = *image->getMatImage();
             cv::bitwise_not(imgSource,imgSource);
-            
             detector.detect(imgSource, keypoint);
             
             
             for(unsigned int i=0; i<keypoint.size(); i++)
             {
                 cv::Point relativePt = m_attachedImg->calcFromRelativePoint(keypoint.at(i).pt);
-                cv::Rect roi(keypoint.at(i).pt.x - (keypoint.at(i).size/4),keypoint.at(i).pt.y + (keypoint.at(i).size/4),(keypoint.at(i).size/2)*std::sqrt(2),(keypoint.at(i).size/2)*std::sqrt(2));
                 //Filter
-                std::string color = "red";
-                keypoint_filtered.push_back(keypoint.at(i));
-                m_match.push_back(new BlobMatch(relativePt,keypoint.at(i).size*180,color)); 
-               
-            }
-            // Basic motion detection
-            if(m_lastMatch.size()>0)
-            {
-                std::vector<BlobMatch*> notNoise = basicMotionDetection();
-                
-                /*keypoint.
-                std::cout<<"Not noise:"<<notNoise.size()<<std::endl;
-                for(unsigned int i = 0; i<notNoise.size(); i++)
-                {
-                    for(unsigned int j = 0; j<keypoint.size(); j++)
-                        if((int) notNoise.at(i)->pt.x == (int)keypoint.at(j).pt.x && (int)notNoise.at(i)->pt.y == (int)keypoint.at(j).pt.y)
-                        {
-                            std::cout<<"Without noise match"<<std::endl;
-                            keypoint_withoutNoise.push_back(keypoint.at(j));
-                        }
-                }
-                 */
-                
+                m_match.push_back(new BlobMatch(relativePt,keypoint.at(i).size*180,image->getColor()));
             }
             
-            cv::drawKeypoints( *(m_attachedImg->getOriginalMatImage()),keypoint, m_matResult, cv::Scalar(0,0,255), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
-            
-            
-            m_lastMatch.clear();
-            m_lastMatch = m_match;
-        }
+            cv::drawKeypoints( m_matResult,keypoint, m_matResult, image->getBorderColor(), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
 
-        std::string BlobAnalyser::getColor(cv::Rect roi) {
-            std::string result;
-            cv::Mat img_roi = (*(m_attachedImg->getMatImage()))(roi);
-            cv::Scalar avgPixelIntensity = cv::mean( img_roi );
-            
-            int r = (int)avgPixelIntensity[2], g= (int)avgPixelIntensity[1], b = (int)avgPixelIntensity[0];
-            
-            cv::Mat img(m_attachedImg->getIplImage());
-            cv::Vec3b bgrPixel = img.at<cv::Vec3b>(roi.x + (roi.width/2.0),roi.y - (roi.height/2.0) );
-            std::cout<<"B: "<<(int)bgrPixel[0]<<" G:"<<(int)bgrPixel[1]<<" R:"<<(int)bgrPixel[2]<<std::endl;
-            std::cout<<"vs B: "<<(int)b<<" G:"<<(int)g<<" R:"<<(int)r<<std::endl;
-            if(r > 200 && g > 200  && r > 200) result = "white";
-            else if(r > (b + 50) && r > (g+50)  && r > 100) result = "red";
-            else if(g>200 && b<100 && r<100) result = "green";
-            else if(b>200 && g<100 && r<100) result = "blue";
-            else result = "any";
-            return result;
         }
-
-        std::vector<yarp::os::Bottle> BlobAnalyser::getBottleResult(yarp::os::BufferedPort<yarp::os::Bottle>& outport) {
+        std::vector<yarp::os::Bottle> BlobAnalyser::getBottleResult(Yarp::YarpPort& outport) {
             std::vector<yarp::os::Bottle> result;
             for(unsigned int i=0; i<m_match.size(); i++)
                 result.push_back(m_match.at(i)->getYarpBottle(outport));
@@ -133,6 +107,7 @@ namespace MoDelVi
                     // So much for be the same obj
                     if(distance > 10) continue;
                     notNoise.push_back(newObj);
+                    
                     //No motion
                     if(distance == 0) continue;
                     if(distance <= 1) continue;
@@ -144,7 +119,6 @@ namespace MoDelVi
         }
 
         BlobAnalyser::~BlobAnalyser() {
-            //m_matResult.deallocate();
             m_match.clear();
         }
 

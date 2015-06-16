@@ -19,29 +19,37 @@ namespace MoDelVi
             m_brightness = brightness;
             m_threshold = threshold;
             
-            std::string suffix = "/target/"+name+"/";
+            std::string suffix = Yarp::YarpPort::getSuffix()+name+"/";
             
             std::cout<<"## "<<name<<" cam initialisation ##"<<std::endl;
             std::cout<<"- Opening YARP port"<<std::endl;
+            
             std::cout<<"    * "<<suffix<<"in"<<std::endl;
             std::string full =suffix+"in";
             m_inPort.open(full.c_str());
             m_inPort.setStrict();
             m_inPort.useCallback(*this);
+            
             std::cout<<"    * "<<suffix<<"out"<<std::endl;
             full=suffix+"out";
             m_outPort.open(full.c_str());
             m_outPort.setStrict();
-            std::cout<<"    * "<<suffix<<"data"<<std::endl;
-            full=suffix+"data";
-            m_dataPort.open(full.c_str());
-            m_dataPort.setStrict();
             
+            // Opening data stream
+            m_dataPort = new Yarp::YarpPort(name+"/data");
+            m_dataPort->attachListener(this);
+            
+            //Populate analyser
             m_analyser.push_back(new Analyse::BlobAnalyser);
+            m_lastImg = std::clock();
+            
+            
         }
 
         void CamYarp::onRead(yarp::sig::ImageOf<yarp::sig::PixelRgb>& b) {
-            
+
+            if(((std::clock() - m_lastImg) / (double)(CLOCKS_PER_SEC / 1000)) > 1)
+            {
             Acquisition::YarpImage image(&b);
             
             image.setBlurr(*m_acuity);
@@ -49,24 +57,25 @@ namespace MoDelVi
             image.setFov(*m_fov);
             image.prepareImage();
             
-            Acquisition::ColorFilter colorFilter(&image, Acquisition::ColorFilter::RED_LOW);
-            //outputIplImage(*colorFilter.getIplImage());
             
             if(image.isLoaded())
             {
 		
                 for(unsigned int i =0; i<m_analyser.size(); i++)
                 {
-                    //m_analyser.at(i)->proceed(&image);
-                    m_analyser.at(i)->proceed(&colorFilter);
-                    m_analyser.at(i)->getBottleResult(m_dataPort);
+                    m_analyser.at(i)->proceed(&image);
+                    m_analyser.at(i)->getBottleResult(*m_dataPort);
                 }
 
                 outputMatImage(*((Analyse::BlobAnalyser*)m_analyser.at(0))->getResultMat());
             }
-            
-            
-            
+                m_lastImg = std::clock();
+            }      
+        }
+        void CamYarp::onBottle( std::string portName, yarp::os::Bottle &b)
+        {
+            if(portName == "module")
+                std::cout<<"Bottle received CAM MODULE"<<std::endl;
         }
         void CamYarp::outputMatImage(cv::Mat& img)
         {
@@ -86,6 +95,7 @@ namespace MoDelVi
         }
 
         CamYarp::~CamYarp() {
+            delete m_dataPort;
         }
     }
 }

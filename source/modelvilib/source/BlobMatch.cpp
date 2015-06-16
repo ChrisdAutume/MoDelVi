@@ -12,8 +12,9 @@ namespace MoDelVi
     namespace Analyse
     {
 
-        yarp::os::Bottle BlobMatch::getYarpBottle(yarp::os::BufferedPort<yarp::os::Bottle>& outport) {
-            yarp::os::Bottle& result = outport.prepare();
+        yarp::os::Bottle BlobMatch::getYarpBottle(Yarp::YarpPort& outport) {
+            yarp::os::Bottle& result = outport.getBottle();
+            
             result.clear();
             
             result.addString("colour");
@@ -21,7 +22,7 @@ namespace MoDelVi
             result.addDouble(pt.x);
             result.addDouble(pt.y);
             result.addInt(size);
-            outport.writeStrict();
+            outport.write();
             return result;
         }
         BlobMatch::BlobMatch(cv::Point pt, double size, std::string color) {

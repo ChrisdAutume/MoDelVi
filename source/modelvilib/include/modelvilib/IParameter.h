@@ -10,12 +10,19 @@
 #define Project_IParameter_h
 
 #include <yarp/os/all.h>
+#include <modelvilib/modelvi_api.h>
+#include <iostream>
+#include <string>
 
-namespace ModelVi
+namespace MoDelVi
 {
     namespace Yarp
     {
-         class IParameter
+        /*!
+         @class IParameter
+         @brief Abstract class for YarpPort callback. Cannot be instanciated.
+         */
+         class MODELVI_API IParameter
         {
         public:
             virtual void onBottle(std::string parameterName, yarp::os::Bottle &b) =0;

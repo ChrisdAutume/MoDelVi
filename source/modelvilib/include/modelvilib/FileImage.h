@@ -16,13 +16,23 @@ namespace MoDelVi
 {
     namespace Acquisition
     {
+        /*!
+         @class FileImage
+         @brief Loading image from disk
+         */
         class MODELVI_API FileImage: public AbstractImage
         {
+            //! Path to the image
             std::string m_filename;
+            
+            //! Load the file
             void loadFile();
         public:
+            //! @param filename Path to the image to load
             FileImage(std::string filename);
-            std::string getFilename();;
+            std::string getFilename();
+            
+            //! Reload the file from the disk
             void reLoadData();
         };
     }

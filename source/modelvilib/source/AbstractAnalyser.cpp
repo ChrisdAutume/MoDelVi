@@ -7,6 +7,7 @@
 
 #include <modelvilib/AbstractAnalyser.h>
 
+
 namespace MoDelVi
 {
     namespace Analyse
@@ -24,7 +25,7 @@ namespace MoDelVi
             m_attachedImg = img;
         }
 
-        std::vector<yarp::os::Bottle> AbstractAnalyser::getBottleResult(yarp::os::BufferedPort<yarp::os::Bottle>& outport) {
+        std::vector<yarp::os::Bottle> AbstractAnalyser::getBottleResult(Yarp::YarpPort& outport) {
 
         }
 

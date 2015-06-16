@@ -24,6 +24,8 @@ int main(int /*argc*/, char* /*argv*/[])
 {
 //    std::cout << "Version: " << MODELVI_VERSION << std::endl;  
     MoDelVi::Manager::YarpManager manager;
+    MoDelVi::Yarp::YarpPort::setSuffix("/target/");
+    
     manager.createCamera("right");
     manager.createCamera("left");
     return manager.run();

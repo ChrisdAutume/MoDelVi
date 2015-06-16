@@ -29,33 +29,38 @@ namespace MoDelVi
             yarp::os::Network::init();
             std::cout<<"- Opening YARP port"<<std::endl;
             std::cout<<"    * /target/module"<<std::endl;
-            m_modulePort.open("/target/module");
-            m_modulePort.setStrict();
-            m_modulePort.useCallback(*this);
+            m_modulePort = new Yarp::YarpPort("module");
+            m_modulePort->attachListener(this); //No need to listen
             
             std::cout<<"    * /target/parameter"<<std::endl;
-            m_parameterPort.open("/target/parameter");
-            m_parameterPort.setStrict();
-            m_parameterPort.useCallback(*this);
+            m_parameterPort= new Yarp::YarpPort("parameter");
+            m_parameterPort->attachListener(this);
         }
-
-        void YarpManager::onRead(yarp::os::Bottle& b) {     
-            std::string name = b.get(0).asString().c_str();
-            int value = b.get(1).asInt();
+        void YarpManager::onBottle(std::string parameterName, yarp::os::Bottle &b)
+        {
+            if(parameterName == "parameter")
+            {
+                std::string name = b.get(0).asString().c_str();
+                int value = b.get(1).asInt();
+                
+                if(name == "acuity") setAcuity(value);
+                else if(name == "fov") setFov(value);
+                else if(name == "brightness") setBrightness(value);
+                else if(name == "threshold") setTreshold(value);
+            }
             
-            if(name == "acuity") setAcuity(value);
-            else if(name == "fov") setFov(value);
-            else if(name == "brightness") setBrightness(value);
-            else if(name == "threshold") setTreshold(value);
-            else std::cout<<"Bottle message incorrect"<<std::endl;
         }
 
         YarpManager::~YarpManager() {
+            delete m_modulePort;
+            delete m_parameterPort;
             yarp::os::Network::fini();
         }
 
         void YarpManager::createCamera(std::string cameraName) {
-            m_camList.push_back(new CamYarp(cameraName,&m_acuity,&m_fov,&m_brightness,&m_threshold));
+            CamYarp* cam = new CamYarp(cameraName,&m_acuity,&m_fov,&m_brightness,&m_threshold);
+            m_camList.push_back(cam);
+            m_modulePort->attachListener(cam);
         }
 
         int YarpManager::run() {
